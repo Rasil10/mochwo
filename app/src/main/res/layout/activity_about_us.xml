@@ -56,6 +56,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunitosemibold"
+                        android:textAlignment="center"
                         android:text="@string/kiasAbout"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/textSizeSmall" />

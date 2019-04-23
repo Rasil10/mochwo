@@ -6,5 +6,7 @@ import java.util.ArrayList;
 
 public interface AboutUsView {
 
-    void getMembers(ArrayList<MemberModel> memberModels);
+    void setOrganizingCommiteeMembers(ArrayList<MemberModel> organizingCommiteeMembers);
+    void setScientificCommiteeMembers(ArrayList<MemberModel> scientificCommiteeMembers);
+
 }

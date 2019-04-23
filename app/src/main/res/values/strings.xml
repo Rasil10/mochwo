@@ -6,5 +6,9 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="kiasEmail">info@kias.org.np</string>
+    <string name="kiasPhoneNumber">+977-1-6924204</string>
+    <string name="kiasAbout">Kathmandu Institute of Applied Sciences (KIAS) is carrying out research on “Scientific Research Productivity in Nepal”. This research includes an online survery powered by SoGoSurvery (sogosurvey.org) . This survey is intended to better understand the status of scientific research in Nepal.</string>
+    <string name="title_activity_demo">DemoActivity</string>
 
 </resources>

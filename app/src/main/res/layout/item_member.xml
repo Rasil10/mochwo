@@ -23,9 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunitobold"
-            android:textSize="@dimen/textSizeNormal"
+            android:textSize="@dimen/textSizeSmall"
             android:paddingLeft="@dimen/mainMargin"
             android:paddingRight="@dimen/mainMargin"
+            android:maxLines="2"
             android:textColor="@color/colorWhite" />
 
         <TextView
@@ -34,8 +35,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunitoregular"
             android:paddingLeft="@dimen/mainMargin"
-            android:textSize="@dimen/textSizeSmall"
+            android:textSize="@dimen/textSizeExtraSmall"
             android:paddingRight="@dimen/mainMargin"
+            android:maxLines="2"
             android:textColor="@color/colorWhite" />
     </LinearLayout>
 

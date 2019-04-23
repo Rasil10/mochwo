@@ -29,7 +29,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:src="@drawable/mochow_one"
+        android:src="@drawable/mochow_logo"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 

@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity
         switch (v.getId()) {
             case R.id.fabCall:
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("977-1-6924204"));
+                callIntent.setData(Uri.parse(getResources().getString(R.string.kiasPhoneNumber)));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, Constants.phonePermissionConstant);
@@ -161,6 +161,9 @@ public class MainActivity extends AppCompatActivity
                         startActivity(callIntent);
 
                     }
+                }
+                else{
+                    startActivity(callIntent);
                 }
                 break;
 

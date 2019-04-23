@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,14 +35,21 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MemberAdapter.MyViewHolder holder, int position) {
-        MemberModel currentMember = memberModels.get(position);
+        final MemberModel currentMember = memberModels.get(position);
 
         holder.name.setText(currentMember.getMemberName());
         holder.position.setText(currentMember.getMemeberPosition());
+        holder.position.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(context, currentMember.getMemeberPosition(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
         Picasso.get()
                 .load(currentMember.getMemeberImage())
                 .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
+                .error(R.drawable.ic_terrain_black_24dp)
                 .into(holder.image);
     }
 

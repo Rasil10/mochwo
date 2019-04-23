@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_speaker"
+        android:icon="@drawable/ic_speaker"
+        android:title="Speakers" />
+    <item
+        android:id="@+id/nav_sponser"
+        android:icon="@drawable/ic_sponsers"
+        android:title="Sponsers" />
+
+    <item
+        android:id="@+id/nav_about_us"
+        android:icon="@drawable/ic_about_us"
+        android:title="About Us" />
+
+    <item
+        android:id="@+id/nav_contact_us"
+        android:icon="@drawable/ic_contact_us"
+        android:title="Contact Us" />
+
+    <item
+        android:id="@+id/nav_share"
+        android:icon="@drawable/ic_menu_share"
+        android:title="Share" />
+</menu>

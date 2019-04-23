@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".aboutUs.view.AboutUsActivity">
+
+        <Button
+            android:id="@+id/organizingCommitteeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Organizing Committee"
+            android:fontFamily="@font/nunitobold"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorPrimaryDark"
+            android:padding="@dimen/mainMargin"
+            android:textSize="@dimen/textSizeHeading"
+            android:textAllCaps="false"
+            android:drawableRight="@drawable/ic_expand_more_black_24dp"
+            />
+
+        <com.github.aakira.expandablelayout.ExpandableWeightLayout
+            android:id="@+id/organizingCommitteeExpandableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:ael_duration="400"
+            app:ael_orientation="vertical"
+            app:ael_interpolator="anticipate"
+            >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/membersRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/organizingCommitteeHeading"
+            android:paddingRight="@dimen/mainMargin"
+            android:paddingBottom="@dimen/mainMargin" />
+
+        </com.github.aakira.expandablelayout.ExpandableWeightLayout>
+
+    </LinearLayout>
+</ScrollView>

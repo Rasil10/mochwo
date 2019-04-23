@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_marginLeft="@dimen/mainMargin"
+    android:layout_marginTop="@dimen/mainMargin">
+
+    <ImageView
+        android:id="@+id/memeberImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#8C039BE5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/memberName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitobold"
+            android:textSize="@dimen/textSizeNormal"
+            android:paddingLeft="@dimen/mainMargin"
+            android:paddingRight="@dimen/mainMargin"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/memberPosition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitoregular"
+            android:paddingLeft="@dimen/mainMargin"
+            android:textSize="@dimen/textSizeSmall"
+            android:paddingRight="@dimen/mainMargin"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,9 +1,377 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".speakerDetail.view.SpeakerDetailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/backgroundImage"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="#8C000000"
+            android:scaleType="fitXY"
+            android:src="@drawable/speaker_background" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/speakerImageView"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="32dp"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="2dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/speakerImageView"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/mainMargin">
+
+                <TextView
+                    android:id="@+id/speakerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitobold"
+                    android:maxLines="2"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/textSizeHeading" />
+
+                <TextView
+                    android:id="@+id/speakerCurrentPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitoregular"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/speakerShortInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitoregular"
+                    android:textColor="@color/colorBackground"
+                    android:textSize="@dimen/textSizeSmall" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/backgroundImage"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/fab_margin"
+                android:paddingRight="@dimen/mainMargin"
+                android:paddingLeft="@dimen/mainMargin"
+                android:paddingBottom="@dimen/mainMargin">
+
+                <TextView
+                    android:id="@+id/speakerQuoteTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/nunitoregular"
+                    android:textStyle="italic" />
+
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/speakerQuoteTextView"
+                    android:layout_alignBottom="@+id/speakerQuoteTextView"
+                    android:layout_marginRight="@dimen/mainMargin"
+                    android:layout_toLeftOf="@+id/speakerQuoteTextView"
+                    android:background="@color/colorPrimary" />
+
+            </RelativeLayout>
+
+            <!--EDUCATION-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mainMargin"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/mainMargin"
+                android:paddingRight="@dimen/mainMargin">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_education"
+                    android:tint="@color/colorPrimary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/fab_margin"
+                    android:fontFamily="@font/nunitobold"
+                    android:text="Education"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/textSizeHeading" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/fab_margin">
+
+                <TextView
+                    android:id="@+id/education1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitoregular"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/education2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitoregular"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/education3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitoregular"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/education4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitoregular"
+                    android:textSize="@dimen/textSizeNormal" />
+            </LinearLayout>
+
+
+            <!--QUALIFICATION-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/mainMargin"
+                android:paddingRight="@dimen/mainMargin">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_experience"
+                    android:tint="@color/colorPrimary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/fab_margin"
+                    android:fontFamily="@font/nunitobold"
+                    android:text="Experience"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/textSizeHeading" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/fab_margin">
+
+                <TextView
+                    android:id="@+id/experience1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitoregular"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/experience2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitoregular"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/experience3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitoregular"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/experience4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitoregular"
+                    android:textSize="@dimen/textSizeNormal" />
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/mainMargin"
+                app:cardElevation="@dimen/mainMargin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"
+                    android:padding="@dimen/fab_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/smallMargin"
+                        android:fontFamily="@font/nunitobold"
+                        android:text="Contact"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSizeHeading" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunitoregular"
+                        android:text="Phone"
+                        android:textColor="@color/colorBackground" />
+
+                    <TextView
+                        android:id="@+id/speakerPhoneNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/smallMargin"
+                        android:fontFamily="@font/nunitoregular"
+                        android:text="9849775852"
+                        android:textColor="@color/colorWhite" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunitoregular"
+                        android:text="Email"
+                        android:textColor="@color/colorBackground" />
+
+                    <TextView
+                        android:id="@+id/speakerEmailAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/smallMargin"
+                        android:fontFamily="@font/nunitoregular"
+                        android:text="9849775852"
+                        android:textColor="@color/colorWhite" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunitoregular"
+                        android:text="Address"
+                        android:textColor="@color/colorBackground" />
+
+                    <TextView
+                        android:id="@+id/speakerAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/smallMargin"
+                        android:fontFamily="@font/nunitoregular"
+                        android:text="baluwatar"
+                        android:textColor="@color/colorWhite" />
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/mainMargin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/followSpeakerTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitobold"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/textSizeHeading" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="5"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/facebook"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/mainMargin"
+                        android:src="@drawable/ic_facebook"
+                        app:layout_constraintDimensionRatio="1:1" />
+
+                    <ImageView
+                        android:id="@+id/twitter"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/mainMargin"
+                        android:src="@drawable/ic_twitter"
+                        app:layout_constraintDimensionRatio="1:1" />
+
+                    <ImageView
+                        android:id="@+id/linkedin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/mainMargin"
+                        android:src="@drawable/ic_linkedin"
+                        app:layout_constraintDimensionRatio="1:1" />
+
+                    <ImageView
+                        android:id="@+id/instagram"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/mainMargin"
+                        android:src="@drawable/ic_instagram"
+                        app:layout_constraintDimensionRatio="1:1" />
+
+                    <ImageView
+                        android:id="@+id/youtube"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/mainMargin"
+                        android:src="@drawable/ic_youtube"
+                        app:layout_constraintDimensionRatio="1:1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>

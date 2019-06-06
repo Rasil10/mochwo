@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="@dimen/mainMargin"
+    android:layout_marginRight="@dimen/mainMargin"
+    android:layout_marginTop="@dimen/fab_margin"
+    app:cardElevation="@dimen/mainMargin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/fab_margin"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/eventStartingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunitoregular"
+                android:text="10:00"
+                android:textColor="@color/colorNormal"
+                android:textSize="@dimen/textSizeSmall" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/nunitobold"
+                android:text=" - "
+                android:textColor="@color/colorNormal"
+                android:textSize="@dimen/textSizeHeading" />
+
+            <TextView
+                android:id="@+id/eventEndingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/nunitoregular"
+                android:text="10:00"
+                android:textColor="@color/colorNormal"
+                android:textSize="@dimen/textSizeSmall" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7.5"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/mainMargin"
+            android:paddingTop="@dimen/smallMargin"
+            android:paddingRight="@dimen/smallMargin"
+            android:paddingBottom="@dimen/smallMargin">
+
+            <TextView
+                android:id="@+id/eventTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunitobold"
+                android:textColor="@color/colorNormal"
+                android:text="Topic of Event"
+                android:layout_marginBottom="@dimen/mainMargin"
+                android:textSize="@dimen/textSizeHeading" />
+
+            <TextView
+                android:id="@+id/eventSpeakers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunitobold"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:text="Spaker name"
+                android:textSize="@dimen/textSizeSmall" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

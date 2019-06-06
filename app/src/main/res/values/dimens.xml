@@ -13,4 +13,5 @@
     <dimen name="textSizeSmall">12sp</dimen>
     <dimen name="textSizeExtraSmall">10sp</dimen>
     <dimen name="textSizeHeading">16sp</dimen>
+    <dimen name="mainPageImageSize">220dp</dimen>
 </resources>

@@ -7,6 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".aboutUs.view.AboutUsActivity"
     tools:showIn="@layout/activity_about_us">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,10 +17,14 @@
         <Button
             android:id="@+id/organizingCommitteeButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="@color/colorWhite"
+            android:drawableLeft="@drawable/ic_organizing_committee"
             android:drawableRight="@drawable/ic_expand_more_black_24dp"
+            android:drawablePadding="@dimen/mainMargin"
+            android:elevation="@dimen/mainMargin"
             android:fontFamily="@font/nunitobold"
+            android:gravity="left|center"
             android:padding="@dimen/mainMargin"
             android:text="Organizing Committee"
             android:textAllCaps="false"
@@ -52,8 +57,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
+            android:drawableLeft="@drawable/ic_scientific_committee"
             android:drawableRight="@drawable/ic_expand_more_black_24dp"
+            android:drawablePadding="@dimen/mainMargin"
+            android:elevation="@dimen/mainMargin"
             android:fontFamily="@font/nunitobold"
+            android:gravity="left|center"
             android:padding="@dimen/mainMargin"
             android:text="Scientific Committee"
             android:textAllCaps="false"

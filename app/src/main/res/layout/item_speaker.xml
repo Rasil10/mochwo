@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/mainMargin"
+    app:cardCornerRadius="@dimen/fab_margin"
+    app:cardElevation="@dimen/mainMargin">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/mainMargin">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/speakerImageView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/speakerImageView"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/mainMargin">
+
+            <TextView
+                android:id="@+id/speakerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunitobold"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/mainMargin"
+                android:paddingRight="@dimen/mainMargin"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/speakerQualification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunitoregular"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/mainMargin"
+                android:paddingRight="@dimen/mainMargin"
+                android:textColor="@color/colorBlack" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/viewMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="View More"
+            android:padding="@dimen/smallMargin"
+            android:fontFamily="@font/nunitoregular"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorWhite"
+            android:src="@drawable/ic_forward_black_24dp" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

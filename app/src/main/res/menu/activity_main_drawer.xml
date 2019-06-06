@@ -4,13 +4,15 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/nav_speaker"
-        android:icon="@drawable/ic_speaker"
-        android:title="Speakers" />
+        android:id="@+id/nav_past_events"
+        android:icon="@drawable/ic_event_note_black_24dp"
+        android:title="Past Events" />
+
     <item
-        android:id="@+id/nav_sponser"
-        android:icon="@drawable/ic_sponsers"
-        android:title="Sponsers" />
+        android:id="@+id/nav_bookmark"
+        android:icon="@drawable/ic_bookmark_true"
+        android:title="Bookmarks" />
+
 
     <item
         android:id="@+id/nav_about_us"

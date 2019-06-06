@@ -1,20 +1,16 @@
 package com.jnanatech.mochwo.splash;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.jnanatech.mochwo.R;
 import com.jnanatech.mochwo.main.view.MainActivity;
@@ -31,6 +27,7 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
         setContentView(R.layout.activity_splash);
 
         modifyStatusBar();
+
 
         icon = findViewById(R.id.iv_icons);
         mochwoTextView = findViewById(R.id.tv_intro);
@@ -51,12 +48,10 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
 
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark)); // Navigation bar the soft bottom of some phones like nexus and some Samsung note series
-            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark)); //status bar or the time bar at the top
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark)); //status bar or the time bar at the top
         }
 
-
     }
-
 
     @Override
     public void onAnimationStart(Animation animation) {
@@ -66,11 +61,13 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
     @Override
     public void onAnimationEnd(Animation animation) {
         SplashActivity.this.finish();
-        startActivity(new Intent(SplashActivity.this,MainActivity.class));
+        startActivity(new Intent(SplashActivity.this, MainActivity.class));
     }
 
     @Override
     public void onAnimationRepeat(Animation animation) {
 
     }
+
+
 }

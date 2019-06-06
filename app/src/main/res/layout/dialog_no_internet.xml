@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/a"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#DA5F6A"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="#DA5F6A"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_no_internet"
+            android:tint="@color/colorWhite" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/a"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/nunitoregular"
+        android:gravity="center_horizontal"
+        android:text="No internet Connection.Go to Settings or Cancel it."
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_dialog"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="@dimen/mainMargin"
+            android:layout_marginBottom="20dp"
+            android:background="#DA5F6A"
+            android:fontFamily="@font/nunitobold"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Cancel"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/settingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/mainMargin"
+            android:layout_marginBottom="20dp"
+            android:background="#DA5F6A"
+            android:fontFamily="@font/nunitobold"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Settings"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+</RelativeLayout>

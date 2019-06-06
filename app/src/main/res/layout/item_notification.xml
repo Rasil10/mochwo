@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:cardElevation="@dimen/mainMargin"
+    app:cardCornerRadius="@dimen/smallMargin"
+    android:layout_marginBottom="@dimen/mainMargin">
+
+    <LinearLayout
+        android:id="@+id/mainView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/mainMargin">
+
+        <TextView
+            android:id="@+id/notificationAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitobold"
+            android:text="Notification about Speaker"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/notificationDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitoregular"
+            android:text="Ram thapa has been added as speaker"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSizeHeading" />
+
+        <TextView
+            android:id="@+id/notificationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitoregular"
+            android:text="2015-5-5" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

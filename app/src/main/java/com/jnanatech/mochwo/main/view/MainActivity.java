@@ -28,7 +28,6 @@ import com.github.clans.fab.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.jnanatech.mochwo.R;
 import com.jnanatech.mochwo.aboutUs.view.AboutUsActivity;
-import com.jnanatech.mochwo.abstracts.view.AbstractActivity;
 import com.jnanatech.mochwo.bookmark.view.BookmarkActivity;
 import com.jnanatech.mochwo.contactUs.ContactUsActivity;
 import com.jnanatech.mochwo.main.model.Conference;
@@ -39,8 +38,8 @@ import com.jnanatech.mochwo.notification.view.NotificationActivity;
 import com.jnanatech.mochwo.schedule.view.ScheduleActivity;
 import com.jnanatech.mochwo.search.view.SearchActivity;
 import com.jnanatech.mochwo.speakers.view.SpeakersActivity;
-import com.jnanatech.mochwo.sponsers.model.SponserModel;
 import com.jnanatech.mochwo.sponsers.view.SponserActivity;
+import com.jnanatech.mochwo.utils.AbstractSubmissionDialog;
 import com.jnanatech.mochwo.utils.Constants;
 import com.jnanatech.mochwo.utils.PastEventDialog;
 import com.onesignal.OneSignal;
@@ -48,7 +47,6 @@ import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -72,7 +70,6 @@ public class MainActivity extends AppCompatActivity
     private Menu menu;
     Boolean changeNotificationIcon = false;
 
-    ArrayList<SponserModel> sponserModels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,17 +85,14 @@ public class MainActivity extends AppCompatActivity
         bindActivity();
 
 
-
         mainPresenter = new MainImplementor(MainActivity.this, this);
-        mainPresenter.showLoadingDialog();
         mainPresenter.setConference();
         mainPresenter.setRemainingTime();
         mainPresenter.setSchedule1();
         mainPresenter.setSchedule2();
         mainPresenter.getSpeakers();
-        mainPresenter.checkSpeakerSize();
+        mainPresenter.getUpdates();
         mainPresenter.getSponsers();
-        mainPresenter.dismissLoadingDialog();
 
 
     }
@@ -240,6 +234,8 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.scheduleCardView:
+//                ScheduleDialog scheduleDialog = new ScheduleDialog();
+//                scheduleDialog.showDialog(this, "s");
                 startActivity(new Intent(MainActivity.this, ScheduleActivity.class));
                 break;
             case R.id.speakersCardView:
@@ -247,7 +243,6 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.sponsersCardView:
                 Intent sponserIntent = new Intent(MainActivity.this, SponserActivity.class);
-                sponserIntent.putExtra(Constants.sponsersConstant, sponserModels);
                 startActivity(sponserIntent);
                 break;
             case R.id.materialsCardView:
@@ -270,7 +265,8 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
             case R.id.abstractCardView:
-                startActivity(new Intent(MainActivity.this, AbstractActivity.class));
+                AbstractSubmissionDialog abstractSubmissionDialog = new AbstractSubmissionDialog();
+                abstractSubmissionDialog.showDialog(this, " Abstract ");
                 break;
             case R.id.searchCardView:
                 startActivity(new Intent(MainActivity.this, SearchActivity.class));
@@ -321,10 +317,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public void getSponser(ArrayList<SponserModel> sponserModels) {
-        this.sponserModels = sponserModels;
-    }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -457,7 +449,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onLongClick(View v) {
         switch (v.getId()) {
             case R.id.scheduleCardView:
-                Toast.makeText(this, "View ScheduleModel", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "View Schedule", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.speakersCardView:
                 Toast.makeText(this, "View Speakers", Toast.LENGTH_SHORT).show();
@@ -481,7 +473,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.notificationCardView:
-                Toast.makeText(this, "View NotificationModel", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "View Notification", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return false;

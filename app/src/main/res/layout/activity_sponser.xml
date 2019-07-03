@@ -1,18 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorGrey"
+    android:orientation="vertical"
+    android:fillViewport="true"
     tools:context=".sponsers.view.SponserActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/sponsersRecyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_sponsers"
-        android:paddingTop="@dimen/mainMargin"
-        android:paddingBottom="@dimen/mainMargin"
-        android:paddingLeft="@dimen/mainMargin"/>
+        android:orientation="vertical">
 
-</LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/mainMargin"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardElevation="@dimen/mainMargin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/mainMargin"
+                    android:layout_marginTop="@dimen/smallMargin"
+                    android:fontFamily="@font/nunitobold"
+                    android:text="Host"
+                    android:textSize="@dimen/textSizeHeading" />
+
+                <ImageView
+                    android:id="@+id/hostImageView"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingRight="@dimen/mainMargin" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/mainMargin"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardElevation="@dimen/mainMargin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/mainMargin"
+                    android:layout_marginTop="@dimen/smallMargin"
+                    android:fontFamily="@font/nunitobold"
+                    android:text="Co-Organizers"
+                    android:layout_gravity="start"
+                    android:textSize="@dimen/textSizeHeading" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/coOrganizerRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/mainMargin" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/mainMargin"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardElevation="@dimen/mainMargin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/mainMargin"
+                    android:layout_marginTop="@dimen/smallMargin"
+                    android:fontFamily="@font/nunitobold"
+                    android:text="Partners"
+                    android:layout_gravity="start"
+                    android:textSize="@dimen/textSizeHeading" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/partnersRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/mainMargin"
+                    android:paddingTop="@dimen/mainMargin"
+                    android:paddingBottom="@dimen/mainMargin" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/mainMargin"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardElevation="@dimen/mainMargin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/mainMargin"
+                    android:layout_marginTop="@dimen/smallMargin"
+                    android:fontFamily="@font/nunitobold"
+                    android:text="Sponsors"
+                    android:layout_gravity="start"
+                    android:textSize="@dimen/textSizeHeading" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/sponsersRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/mainMargin"
+                    android:paddingTop="@dimen/mainMargin"
+                    android:paddingBottom="@dimen/mainMargin" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

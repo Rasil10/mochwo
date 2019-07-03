@@ -20,10 +20,20 @@
             android:layout_height="64dp"
             android:layout_centerVertical="true" />
 
+        <ImageView
+            android:id="@+id/viewMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="270"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_expand_more_black_24dp"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/viewMore"
             android:layout_toRightOf="@+id/speakerImageView"
             android:orientation="vertical"
             android:paddingLeft="@dimen/mainMargin">
@@ -47,20 +57,31 @@
                 android:paddingLeft="@dimen/mainMargin"
                 android:paddingRight="@dimen/mainMargin"
                 android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/speakerKeywords"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/smallMargin"
+                android:fontFamily="@font/nunitoregular"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
+                />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/viewMore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:text="View More"
-            android:padding="@dimen/smallMargin"
-            android:fontFamily="@font/nunitoregular"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/colorWhite"
-            android:src="@drawable/ic_forward_black_24dp" />
+        <!--<TextView-->
+            <!--android:id="@+id/viewMore"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:text="View More"-->
+            <!--android:padding="@dimen/smallMargin"-->
+            <!--android:fontFamily="@font/nunitoregular"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:textColor="@color/colorWhite"-->
+            <!--android:src="@drawable/ic_forward_black_24dp" />-->
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

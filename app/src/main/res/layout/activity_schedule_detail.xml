@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="match_parent"
@@ -24,99 +24,170 @@
             android:layout_marginLeft="@dimen/fab_margin"
             android:layout_marginTop="180dp"
             android:layout_marginRight="@dimen/fab_margin"
-            android:background="@color/colorWhite"
+            android:background="@color/colorBackground"
+            android:elevation="@dimen/mainMargin"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/fab_margin"
+            android:paddingLeft="@dimen/mainMargin"
             android:paddingTop="@dimen/mainMargin"
-            android:paddingRight="@dimen/fab_margin"
-            android:paddingBottom="@dimen/mainMargin">
+            android:paddingRight="@dimen/mainMargin"
+            android:paddingBottom="@dimen/mainMargin"
+            tools:targetApi="lollipop">
 
             <TextView
                 android:id="@+id/scheduleTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:fontFamily="@font/nunitobold"
                 android:text="This is the heading"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/textSizeHeading" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/mainMargin"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_access_time_black_24dp"
-                    android:tint="@color/colorBlack" />
 
-                <TextView
-                    android:id="@+id/scheduleTimeTextView"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/fab_margin"
-                    android:fontFamily="@font/nunitoregular"
-                    android:text="Event Time"
-                    android:textColor="@color/colorNormal"
-                    android:textSize="@dimen/textSizeNormal" />
-            </LinearLayout>
+                    android:layout_marginTop="@dimen/mainMargin"
+                    android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/mainMargin"
-                android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_access_time_black_24dp"
+                        android:tint="@color/colorBlack" />
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_event_note_black_24dp"
-                    android:tint="@color/colorBlack" />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="@dimen/mainMargin"
+                        android:src="@drawable/ic_event_note_black_24dp"
+                        android:tint="@color/colorBlack" />
 
-                <TextView
-                    android:id="@+id/scheduleDate"
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="@dimen/mainMargin"
+                        android:src="@drawable/ic_location_on_black_24dp"
+                        android:tint="@color/colorBlack" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/fab_margin"
-                    android:fontFamily="@font/nunitoregular"
-                    android:text="Location of The Event"
-                    android:textColor="@color/colorNormal"
-                    android:textSize="@dimen/textSizeNormal" />
-            </LinearLayout>
+                    android:layout_marginTop="@dimen/mainMargin"
+                    android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/mainMargin"
-                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_location_on_black_24dp"
-                    android:tint="@color/colorBlack" />
+                    <TextView
+                        android:id="@+id/scheduleTimeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fab_margin"
+                        android:fontFamily="@font/nunitoregular"
+                        android:text="Event Time"
+                        android:textColor="@color/colorNormal"
+                        android:textSize="@dimen/textSizeNormal" />
 
-                <TextView
-                    android:id="@+id/scheduleLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/fab_margin"
-                    android:fontFamily="@font/nunitoregular"
-                    android:text="Location of The Event"
-                    android:textColor="@color/colorNormal"
-                    android:textSize="@dimen/textSizeNormal" />
+                    <TextView
+                        android:id="@+id/scheduleDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fab_margin"
+                        android:layout_marginTop="@dimen/mainMargin"
+                        android:fontFamily="@font/nunitoregular"
+                        android:text="Location of The Event"
+                        android:textColor="@color/colorNormal"
+                        android:textSize="@dimen/textSizeNormal" />
+
+                    <TextView
+                        android:id="@+id/scheduleLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fab_margin"
+                        android:layout_marginTop="@dimen/mainMargin"
+                        android:fontFamily="@font/nunitoregular"
+                        android:text="Location of The Event"
+                        android:textColor="@color/colorNormal"
+                        android:textSize="@dimen/textSizeNormal" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/fab_margin"
+                android:background="@color/colorGrey"
+                android:orientation="vertical"
+                android:padding="@dimen/mainMargin">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/mainMargin"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_event_note_black_24dp"
+                        android:tint="@color/colorBlack" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fab_margin"
+                        android:fontFamily="@font/nunitoregular"
+                        android:text="Abstract"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSizeHeading" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/eventDetailLL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mainMargin">
+
+
+                    <TextView
+                        android:id="@+id/eventDetailTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunitoregular"
+                        android:textSize="@dimen/textSizeSmall" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.plumillonforge.android.chipview.ChipView
+                android:id="@+id/keywordChipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mainMargin"
+                android:padding="@dimen/mainMargin"
+                app:chip_background="@color/colorPrimary"
+                app:chip_background_selected="@color/colorPrimaryDark"
+                app:chip_corner_radius="@dimen/mainMargin"
+                app:chip_line_spacing="@dimen/mainMargin"
+                app:chip_padding="@dimen/mainMargin"
+                app:chip_side_padding="@dimen/mainMargin" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mainMargin"
                 android:background="@color/colorGrey"
                 android:orientation="vertical"
                 android:padding="@dimen/mainMargin">
@@ -140,7 +211,7 @@
                         android:fontFamily="@font/nunitoregular"
                         android:text="Speakers"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeNormal" />
+                        android:textSize="@dimen/textSizeHeading" />
 
                 </LinearLayout>
 
@@ -148,68 +219,53 @@
                     android:id="@+id/speakerLL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:padding="@dimen/fab_margin">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/speakerImageView"
-                        android:layout_width="72dp"
-                        android:layout_height="72dp"
-                        android:layout_marginTop="@dimen/mainMargin"
-                        app:civ_border_color="@color/colorPrimary"
-                        app:civ_border_width="2dp" />
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/speakersTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/fab_margin"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
+                        android:fontFamily="@font/nunitoregular"
+                        android:textSize="@dimen/textSizeNormal"
+                        android:textStyle="italic" />
 
-                        <TextView
-                            android:id="@+id/speakerName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunitoregular"
-                            android:text="Speaker Name"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/textSizeNormal" />
-
-                        <TextView
-                            android:id="@+id/speakerPosition"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunitoregular"
-                            android:text="Position"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/textSizeSmall" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunitoregular"
-                            android:text="Speaker"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/textSizeSmall" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/speakerDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/textSizeExtraSmall"
+                        android:fontFamily="@font/nunitoregular" />
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/noSpeakerTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/mainMargin"
+                    android:background="@color/colorWhite"
+                    android:fontFamily="@font/nunitobold"
+                    android:padding="@dimen/smallMargin"
+                    android:text="No Speaker Detail Availble..."
+                    android:textSize="@dimen/textSizeHeading"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/fab_margin"
                 android:layout_marginTop="@dimen/fab_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/fab_margin">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
@@ -223,31 +279,31 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunitoregular"
-                        android:textAllCaps="true"
-                        android:text="Bookmark"/>
+                        android:text="Bookmark"
+                        android:textAllCaps="true" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/shareImageView"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:tint="@color/colorNormal"
-                        android:src="@drawable/ic_menu_share" />
+                        android:src="@drawable/ic_menu_share"
+                        android:tint="@color/colorNormal" />
 
                     <TextView
                         android:id="@+id/shareTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunitoregular"
-                        android:textAllCaps="true"
-                        android:text="Share"/>
+                        android:text="Share"
+                        android:textAllCaps="true" />
                 </LinearLayout>
 
 

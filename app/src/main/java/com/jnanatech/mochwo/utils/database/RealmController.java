@@ -164,15 +164,32 @@ public class RealmController {
         }
         return list;
     }
+    public void addAllNotification(ArrayList<NotificationModel> allNotification) {
 
+        realm.beginTransaction();
+        realm.copyToRealm(allNotification);
+        realm.commitTransaction();
 
+    }
+    public void clearAllNotification() {
+        realm.beginTransaction();
+        realm.delete(NotificationModel.class);
+//        realm.delete(CompanyNameModel.class);
+        realm.commitTransaction();
+    }
     //sponsors database actions
     public void addSponsors(SponserModel sponserModel) {
         realm.beginTransaction();
         realm.copyToRealm(sponserModel);
         realm.commitTransaction();
     }
+    public void addAllSponsors(ArrayList<SponserModel> allSponsors) {
 
+        realm.beginTransaction();
+        realm.copyToRealm(allSponsors);
+        realm.commitTransaction();
+
+    }
     public ArrayList<SponserModel> getAllSponsors() {
         ArrayList<SponserModel> list = new ArrayList<>();
         Realm realm = null;
@@ -221,6 +238,47 @@ public class RealmController {
         return list;
     }
 
+    public ArrayList<EventModel> getEventBySessionName(String sessionName) {
+        ArrayList<EventModel> list = new ArrayList<>();
+        Realm realm = null;
+        try {
+            realm = Realm.getDefaultInstance();
+            RealmResults<EventModel> results = realm
+                    .where(EventModel.class)
+                    .findAll();
+            for (int i = 0; i < results.size(); i++) {
+                if (results.get(i).getSessionTitle().equalsIgnoreCase(sessionName)) {
+                    list.add(results.get(i));
+                }
+            }
+        } finally {
+            if (realm != null) {
+                realm.close();
+            }
+        }
+        return list;
+    }
+
+    public EventModel getEventByEventTitle(String title) {
+        ArrayList<EventModel> list = new ArrayList<>();
+        Realm realm = null;
+        try {
+            realm = Realm.getDefaultInstance();
+            RealmResults<EventModel> results = realm
+                    .where(EventModel.class)
+                    .findAll();
+            for (int i = 0; i < results.size(); i++) {
+                if (results.get(i).getEventTitle().equalsIgnoreCase(title)) {
+                    list.add(results.get(i));
+                }
+            }
+        } finally {
+            if (realm != null) {
+                realm.close();
+            }
+        }
+        return list.get(0);
+    }
     public ArrayList<EventModel> getFirstDayEvents() {
         ArrayList<EventModel> list = new ArrayList<>();
         Realm realm = null;
@@ -230,7 +288,7 @@ public class RealmController {
                     .where(EventModel.class)
                     .findAll();
             for (int i = 0; i < results.size(); i++) {
-                if (results.get(i).getScheduleName().equalsIgnoreCase("schedule_d1")) {
+                if (results.get(i).getScheduleName().equalsIgnoreCase("d1-schedule")) {
                     list.add(results.get(i));
                 }
             }
@@ -251,7 +309,7 @@ public class RealmController {
                     .where(EventModel.class)
                     .findAll();
             for (int i = 0; i < results.size(); i++) {
-                if (results.get(i).getScheduleName().equalsIgnoreCase("schedule_d2")) {
+                if (results.get(i).getScheduleName().equalsIgnoreCase("d2-schedule")) {
                     list.add(results.get(i));
                 }
             }

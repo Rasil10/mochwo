@@ -56,7 +56,10 @@ public class SpeakerSearchAdapter extends RecyclerView.Adapter<SpeakerSearchAdap
         final SpeakerModel currentSpeaker = speakerModels.get(position);
 
         holder.textView.setText(currentSpeaker.getSpeakerName());
-        setImage(currentSpeaker.getFeatureMediaLink(), holder.imageView);
+        Picasso.get().load(currentSpeaker.getImageUrl())
+                .placeholder(R.drawable.ic_terrain_black_24dp)
+                .error(R.drawable.ic_terrain_black_24dp)
+                .into(holder.imageView);
 
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
@@ -71,46 +74,6 @@ public class SpeakerSearchAdapter extends RecyclerView.Adapter<SpeakerSearchAdap
 
     }
 
-    private void setImage(String featureMediaLink, final ImageView imageView) {
-        JsonArrayRequest
-                jsonArrayRequest
-                = new JsonArrayRequest(
-                Request.Method.GET,
-                featureMediaLink,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                JSONObject jsonObject = response.getJSONObject(0);
-                                JSONObject mediaObject = jsonObject.getJSONObject("media_details");
-                                JSONObject imageSizeObject = mediaObject.getJSONObject("sizes");
-                                JSONObject finalImageObject = imageSizeObject.getJSONObject("et-pb-gallery-module-image-portrait");
-                                String url = finalImageObject.getString("source_url");
-
-                                Picasso.get().load(url)
-                                        .placeholder(R.drawable.ic_terrain_black_24dp)
-                                        .error(R.drawable.ic_terrain_black_24dp)
-                                        .into(imageView);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                    }
-
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-        requestQueue.add(jsonArrayRequest);
-    }
 
 
     @Override

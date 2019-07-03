@@ -1,89 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainlayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginLeft="@dimen/mainMargin"
+    android:layout_marginTop="@dimen/mainMargin"
     android:layout_marginRight="@dimen/mainMargin"
-    android:layout_marginTop="@dimen/fab_margin"
+    android:layout_marginBottom="@dimen/mainMargin"
     app:cardElevation="@dimen/mainMargin">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/fab_margin"
-        android:background="@color/colorWhite"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/eventStartingTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunitoregular"
-                android:text="10:00"
-                android:textColor="@color/colorNormal"
-                android:textSize="@dimen/textSizeSmall" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:fontFamily="@font/nunitobold"
-                android:text=" - "
-                android:textColor="@color/colorNormal"
-                android:textSize="@dimen/textSizeHeading" />
-
-            <TextView
-                android:id="@+id/eventEndingTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:fontFamily="@font/nunitoregular"
-                android:text="10:00"
-                android:textColor="@color/colorNormal"
-                android:textSize="@dimen/textSizeSmall" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="7.5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorWhite"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/mainMargin"
-            android:paddingTop="@dimen/smallMargin"
-            android:paddingRight="@dimen/smallMargin"
-            android:paddingBottom="@dimen/smallMargin">
+            android:orientation="horizontal"
+            android:padding="@dimen/fab_margin"
+            android:weightSum="10">
 
-            <TextView
-                android:id="@+id/eventTitle"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nunitobold"
-                android:textColor="@color/colorNormal"
-                android:text="Topic of Event"
-                android:layout_marginBottom="@dimen/mainMargin"
-                android:textSize="@dimen/textSizeHeading" />
+                android:layout_weight="2.5"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/eventSpeakers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunitobold"
-                android:textAllCaps="true"
-                android:textColor="@color/colorPrimary"
-                android:text="Spaker name"
-                android:textSize="@dimen/textSizeSmall" />
+                <TextView
+                    android:id="@+id/eventStartingTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitoregular"
+                    android:text="10:00"
+                    android:textColor="@color/colorNormal"
+                    android:textSize="@dimen/textSizeSmall" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/nunitobold"
+                    android:text=" - "
+                    android:textColor="@color/colorNormal"
+                    android:textSize="@dimen/textSizeHeading" />
+
+                <TextView
+                    android:id="@+id/eventEndingTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/nunitoregular"
+                    android:text="10:00"
+                    android:textColor="@color/colorNormal"
+                    android:textSize="@dimen/textSizeSmall" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7.5">
+
+                <ImageView
+                    android:id="@+id/moreIV"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/ic_expand_more_black_24dp" />
+
+                <LinearLayout
+                    android:id="@+id/ll1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/moreIV"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/mainMargin"
+                    android:paddingTop="@dimen/smallMargin"
+                    android:paddingRight="@dimen/smallMargin"
+                    android:paddingBottom="@dimen/smallMargin">
+
+                    <TextView
+                        android:id="@+id/eventTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/mainMargin"
+                        android:fontFamily="@font/nunitobold"
+                        android:text="Topic of Event"
+                        android:textColor="@color/colorNormal"
+                        android:textSize="@dimen/textSizeNormal" />
+
+                    <TextView
+                        android:id="@+id/eventSpeakers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunitobold"
+                        android:text="Spaker name"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/textSizeExtraSmall" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/innerRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mainMargin"
+            android:background="#f6f6f6"
+            android:visibility="gone">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

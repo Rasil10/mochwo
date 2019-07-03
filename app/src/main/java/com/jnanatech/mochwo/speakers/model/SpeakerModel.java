@@ -13,61 +13,58 @@ public class SpeakerModel extends RealmObject implements Serializable {
 
     private String date;
 
-    private String facebookUrl;
-
-    private String twitterUrl;
-
-    private String linkedInUrl;
-
-    private String instagramUrl;
-
-    private String youtubeUrl;
-
     private String speakerName;
 
     private String currentPosition;
 
     private String shortInfo;
 
-    private String personalSite;
+    private String abstractt;
 
-    private String description;
+    private String keywords;
 
-    private String quote;
-
-    private String education1;
-
-    private String education2;
-
-    private String education3;
-
-    private String education4;
-
-    private String experience1;
-
-    private String experience2;
-
-    private String experience3;
-
-    private String experience4;
-
-    private String phone;
+    private String topic;
 
     private String email;
 
-    private String address;
+    private String imageUrl;
 
-    private int featuredMediaId;
 
-    private String featureMediaLink;
 
-    public String getFeatureMediaLink() {
-        return featureMediaLink;
-    }
+//    private String facebookUrl;
+//
+//    private String twitterUrl;
+//
+//    private String linkedInUrl;
+//
+//    private String instagramUrl;
+//
+//    private String youtubeUrl;
 
-    public void setFeatureMediaLink(String featureMediaLink) {
-        this.featureMediaLink = featureMediaLink;
-    }
+//    private String personalSite;
+
+//    private String quote;
+
+//    private String education1;
+//
+//    private String education2;
+//
+//    private String education3;
+//
+//    private String education4;
+//
+//    private String experience1;
+//
+//    private String experience2;
+//
+//    private String experience3;
+//
+//    private String experience4;
+
+//    private String phone;
+
+//    private String address;
+
 
     public int getId() {
         return id;
@@ -77,44 +74,12 @@ public class SpeakerModel extends RealmObject implements Serializable {
         this.id = id;
     }
 
-    public String getFacebookUrl() {
-        return facebookUrl;
+    public String getDate() {
+        return date;
     }
 
-    public void setFacebookUrl(String facebookUrl) {
-        this.facebookUrl = facebookUrl;
-    }
-
-    public String getTwitterUrl() {
-        return twitterUrl;
-    }
-
-    public void setTwitterUrl(String twitterUrl) {
-        this.twitterUrl = twitterUrl;
-    }
-
-    public String getLinkedInUrl() {
-        return linkedInUrl;
-    }
-
-    public void setLinkedInUrl(String linkedInUrl) {
-        this.linkedInUrl = linkedInUrl;
-    }
-
-    public String getInstagramUrl() {
-        return instagramUrl;
-    }
-
-    public void setInstagramUrl(String instagramUrl) {
-        this.instagramUrl = instagramUrl;
-    }
-
-    public String getYoutubeUrl() {
-        return youtubeUrl;
-    }
-
-    public void setYoutubeUrl(String youtubeUrl) {
-        this.youtubeUrl = youtubeUrl;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getSpeakerName() {
@@ -141,100 +106,28 @@ public class SpeakerModel extends RealmObject implements Serializable {
         this.shortInfo = shortInfo;
     }
 
-    public String getPersonalSite() {
-        return personalSite;
+    public String getAbstractt() {
+        return abstractt;
     }
 
-    public void setPersonalSite(String personalSite) {
-        this.personalSite = personalSite;
+    public void setAbstractt(String abstractt) {
+        this.abstractt = abstractt;
     }
 
-    public String getDescription() {
-        return description;
+    public String getKeywords() {
+        return keywords;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
     }
 
-    public String getQuote() {
-        return quote;
+    public String getTopic() {
+        return topic;
     }
 
-    public void setQuote(String quote) {
-        this.quote = quote;
-    }
-
-    public String getEducation1() {
-        return education1;
-    }
-
-    public void setEducation1(String education1) {
-        this.education1 = education1;
-    }
-
-    public String getEducation2() {
-        return education2;
-    }
-
-    public void setEducation2(String education2) {
-        this.education2 = education2;
-    }
-
-    public String getEducation3() {
-        return education3;
-    }
-
-    public void setEducation3(String education3) {
-        this.education3 = education3;
-    }
-
-    public String getEducation4() {
-        return education4;
-    }
-
-    public void setEducation4(String education4) {
-        this.education4 = education4;
-    }
-
-    public String getExperience1() {
-        return experience1;
-    }
-
-    public void setExperience1(String experience1) {
-        this.experience1 = experience1;
-    }
-
-    public String getExperience2() {
-        return experience2;
-    }
-
-    public void setExperience2(String experience2) {
-        this.experience2 = experience2;
-    }
-
-    public String getExperience3() {
-        return experience3;
-    }
-
-    public void setExperience3(String experience3) {
-        this.experience3 = experience3;
-    }
-
-    public String getExperience4() {
-        return experience4;
-    }
-
-    public void setExperience4(String experience4) {
-        this.experience4 = experience4;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 
     public String getEmail() {
@@ -245,27 +138,11 @@ public class SpeakerModel extends RealmObject implements Serializable {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public int getFeaturedMediaId() {
-        return featuredMediaId;
-    }
-
-    public void setFeaturedMediaId(int featuredMediaId) {
-        this.featuredMediaId = featuredMediaId;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

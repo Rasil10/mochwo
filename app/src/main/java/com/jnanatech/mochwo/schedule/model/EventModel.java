@@ -10,21 +10,27 @@ public class EventModel extends RealmObject implements Serializable {
 
     @PrimaryKey
     private String id;
+
     private String startTime;
     private String endTime;
-    private String topic;
-    private String description;
+    private String chairPersonName;
+    private String chairPersonDetail;
 
+    private String eventTitle;
+    private String eventSpeaker;
+    private String speakerDetail;
+    private String abstractDetail;
     private String keywords;
-    private String speakers;
+
 
     private String scheduleName;
-    private String sessionName;
+    private String sessionTitle;
 
     private boolean bookmarked;
 
     public EventModel() {
     }
+
 
     public String getId() {
         return id;
@@ -50,20 +56,52 @@ public class EventModel extends RealmObject implements Serializable {
         this.endTime = endTime;
     }
 
-    public String getTopic() {
-        return topic;
+    public String getChairPersonName() {
+        return chairPersonName;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+    public void setChairPersonName(String chairPersonName) {
+        this.chairPersonName = chairPersonName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getChairPersonDetail() {
+        return chairPersonDetail;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setChairPersonDetail(String chairPersonDetail) {
+        this.chairPersonDetail = chairPersonDetail;
+    }
+
+    public String getEventTitle() {
+        return eventTitle;
+    }
+
+    public void setEventTitle(String eventTitle) {
+        this.eventTitle = eventTitle;
+    }
+
+    public String getEventSpeaker() {
+        return eventSpeaker;
+    }
+
+    public void setEventSpeaker(String eventSpeaker) {
+        this.eventSpeaker = eventSpeaker;
+    }
+
+    public String getSpeakerDetail() {
+        return speakerDetail;
+    }
+
+    public void setSpeakerDetail(String speakerDetail) {
+        this.speakerDetail = speakerDetail;
+    }
+
+    public String getAbstractDetail() {
+        return abstractDetail;
+    }
+
+    public void setAbstractDetail(String abstractDetail) {
+        this.abstractDetail = abstractDetail;
     }
 
     public String getKeywords() {
@@ -74,14 +112,6 @@ public class EventModel extends RealmObject implements Serializable {
         this.keywords = keywords;
     }
 
-    public String getSpeakers() {
-        return speakers;
-    }
-
-    public void setSpeakers(String speakers) {
-        this.speakers = speakers;
-    }
-
     public String getScheduleName() {
         return scheduleName;
     }
@@ -90,12 +120,12 @@ public class EventModel extends RealmObject implements Serializable {
         this.scheduleName = scheduleName;
     }
 
-    public String getSessionName() {
-        return sessionName;
+    public String getSessionTitle() {
+        return sessionTitle;
     }
 
-    public void setSessionName(String sessionName) {
-        this.sessionName = sessionName;
+    public void setSessionTitle(String sessionTitle) {
+        this.sessionTitle = sessionTitle;
     }
 
     public boolean isBookmarked() {

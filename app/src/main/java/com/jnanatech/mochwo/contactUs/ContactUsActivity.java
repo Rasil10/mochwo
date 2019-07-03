@@ -1,8 +1,5 @@
 package com.jnanatech.mochwo.contactUs;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,16 +8,27 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jnanatech.mochwo.R;
-import com.jnanatech.mochwo.main.view.MainActivity;
 import com.jnanatech.mochwo.utils.Constants;
 
 public class ContactUsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RelativeLayout emailRL;
     private RelativeLayout phoneRL;
+
+    private EditText nameET;
+    private EditText emailET;
+    private EditText messageET;
+    private FloatingActionButton sendMessageFAB;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,13 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
 
         phoneRL = (RelativeLayout) findViewById(R.id.phoneRL);
         phoneRL.setOnClickListener(this);
+
+        nameET = (EditText) findViewById(R.id.nameET);
+        emailET = (EditText) findViewById(R.id.emailET);
+        messageET = (EditText) findViewById(R.id.messageET);
+
+        sendMessageFAB = (FloatingActionButton) findViewById(R.id.sendMessageFAB);
+        sendMessageFAB.setOnClickListener(this);
 
     }
 
@@ -60,7 +75,7 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
             case R.id.emailRL:
 
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "mailto",getResources().getString(R.string.kiasEmail), null));
+                        "mailto", getResources().getString(R.string.kiasEmail), null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "KIAS Contact");
                 emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
 
@@ -77,9 +92,47 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
                         startActivity(callIntent);
 
                     }
-                }
-                else{
+                } else {
                     startActivity(callIntent);
+                }
+                break;
+
+            case R.id.sendMessageFAB:
+                String name = nameET.getText().toString();
+                String email = emailET.getText().toString();
+                String message = messageET.getText().toString();
+
+                if (name.length() < 1) {
+                    nameET.setError("Required.");
+                } else if (email.length() < 1) {
+                    emailET.setError("Required.");
+                } else if (message.length() < 1) {
+                    messageET.setError("Required.");
+                } else {
+
+                    Intent intent = new Intent (Intent.ACTION_SEND);
+                    intent.setType("message/rfc822");
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getResources().getString(R.string.kiasEmail)});
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Inquiry by "+ name);
+                    intent.putExtra(Intent.EXTRA_TEXT,message);
+                    intent.setPackage("com.google.android.gm");
+                    if (intent.resolveActivity(getPackageManager())!=null) {
+                        startActivity(intent);
+                        ContactUsActivity.this.finish();
+                    }
+                    else
+                        Toast.makeText(this,"Gmail App is not installed",Toast.LENGTH_SHORT).show();
+
+//                    final Intent gmailIntent = new Intent(Intent.ACTION_VIEW)
+//                            .setType("plain/text")
+//                            .setData(Uri.parse("rasilr10@gmail.com"))
+//                            .setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail")
+//                            .putExtra(Intent.EXTRA_EMAIL, new String[]{"test@gmail.com"})
+//                            .putExtra(Intent.EXTRA_SUBJECT, "Inquiry by "+ name)
+//                            .putExtra(Intent.EXTRA_TEXT, message);
+//                    startActivity(gmailIntent);
+//
+//                    Toast.makeText(this, "Al ok", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

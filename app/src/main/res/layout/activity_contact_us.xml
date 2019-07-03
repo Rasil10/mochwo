@@ -9,32 +9,31 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="300dp"
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:paddingBottom="48dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/logo"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:src="@drawable/mochow_logo"
+            android:layout_width="72dp"
+            android:layout_height="70dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="48dp"
-            app:civ_border_width="1dp"
-            app:civ_border_color="@color/colorWhite"/>
+            android:src="@drawable/mochow_logo"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="1dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/logo"
-            android:gravity="center"
-            android:paddingRight="32dp"
-            android:paddingLeft="32dp"
             android:layout_marginTop="32dp"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp">
 
             <RelativeLayout
                 android:id="@+id/emailRL"
@@ -61,8 +60,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunitobold"
                         android:text="Email"
-                        android:textSize="@dimen/textSizeHeading"
-                        android:textColor="@color/colorWhite" />
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSizeHeading" />
 
                     <TextView
                         android:id="@+id/emailAddress"
@@ -70,8 +69,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunitosemibold"
                         android:text="@string/kiasEmail"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textColor="@color/colorWhite" />
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSizeSmall" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -101,17 +100,17 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunitobold"
                         android:text="Phone"
-                        android:textSize="@dimen/textSizeHeading"
-                        android:textColor="@color/colorWhite" />
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSizeHeading" />
 
                     <TextView
                         android:id="@+id/phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunitosemibold"
-                        android:text="@string/kiasPhoneNumber"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textColor="@color/colorWhite" />
+                        android:text="01–6924204"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSizeSmall" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -123,17 +122,72 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite"
         android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginTop="220dp"
         android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginTop="250dp">
+        android:background="@color/colorWhite"
+        android:fillViewport="true">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        </LinearLayout>
+            <EditText
+                android:id="@+id/nameET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/smallMargin"
+                android:layout_marginRight="@dimen/smallMargin"
+                android:layout_marginBottom="@dimen/fab_margin"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:fontFamily="@font/nunitoregular"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:padding="@dimen/fab_margin" />
+
+            <EditText
+                android:id="@+id/emailET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nameET"
+                android:layout_marginLeft="@dimen/smallMargin"
+                android:layout_marginRight="@dimen/smallMargin"
+                android:layout_marginBottom="@dimen/fab_margin"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:fontFamily="@font/nunitoregular"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/fab_margin" />
+
+            <EditText
+                android:id="@+id/messageET"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@+id/emailET"
+                android:layout_marginLeft="@dimen/smallMargin"
+                android:layout_marginRight="@dimen/smallMargin"
+                android:layout_marginBottom="@dimen/fab_margin"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:fontFamily="@font/nunitoregular"
+                android:gravity="start"
+                android:hint="Message"
+                android:inputType="textShortMessage"
+                android:minHeight="80dp"
+                android:padding="@dimen/fab_margin" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/sendMessageFAB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/mainMargin"
+                android:background="@color/colorPrimary"
+                android:rotation="315"
+                android:src="@drawable/ic_send_black_24dp" />
+
+        </RelativeLayout>
 
     </ScrollView>
 

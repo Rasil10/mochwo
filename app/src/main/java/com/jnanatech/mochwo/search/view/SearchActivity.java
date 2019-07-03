@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -77,24 +76,13 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (this instanceof AppCompatActivity) {
-            AppCompatActivity activity = this;
-            if (activity.getSupportActionBar() != null) {
-                activity.getSupportActionBar().setTitle(R.string.nav_search);
-            }
-        }
-    }
-
     private void initSearch() {
         String categories[] = new String[]{"Speakers", "Schedules", "Sponsors"};
         for (int i = 0; i < categories.length; i++) {
             List<String> contacts = getContactsWithLetter(categories[i]);
 
             if (contacts.size() > 0) {
-                ContactsSection contactsSection = new ContactsSection(categories[i], contacts);
+                SearchAdapter contactsSection = new SearchAdapter(categories[i], contacts);
                 sectionAdapter.addSection(contactsSection);
             }
         }
@@ -122,6 +110,187 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         return false;
     }
 
+
+    private class SearchAdapter extends StatelessSection implements FilterableSection {
+
+        final String title;
+        final List<String> list;
+        final List<String> abstracts;
+        List<String> filteredList;
+
+        SearchAdapter(String title, List<String> list) {
+            super(SectionParameters.builder()
+                    .itemResourceId(R.layout.section_ex7_item)
+                    .headerResourceId(R.layout.section_ex7_header)
+                    .build());
+
+            this.title = title;
+            this.list = list;
+            this.filteredList = new ArrayList<>(list);
+            abstracts = getAbstracts();
+        }
+
+        private List<String> getAbstracts() {
+            final List<String> abstactsString = new ArrayList<>();
+
+            RealmController realmController = RealmController.with(SearchActivity.this);
+            ArrayList<EventModel> eventModels = realmController.getAllEvents();
+
+            for (int i = 0; i < eventModels.size(); i++) {
+                abstactsString.add(eventModels.get(i).getKeywords());
+            }
+
+            return abstactsString;
+
+        }
+
+        @Override
+        public int getContentItemsTotal() {
+            return filteredList.size();
+        }
+
+        @Override
+        public RecyclerView.ViewHolder getItemViewHolder(View view) {
+            return new ItemViewHolder(view);
+        }
+
+        @Override
+        public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
+            final ItemViewHolder itemHolder = (ItemViewHolder) holder;
+
+            final String name = filteredList.get(position);
+            itemHolder.tvItem.setText(name);
+
+            switch (title) {
+                case "Speakers":
+                    itemHolder.imgItem.setImageResource(R.drawable.ic_speaker);
+                    break;
+                case "Sponsors":
+                    itemHolder.imgItem.setImageResource(R.drawable.ic_sponsers);
+                    break;
+                case "Schedules":
+                    itemHolder.imgItem.setImageResource(R.drawable.ic_event_note_black_24dp);
+                    break;
+            }
+
+            itemHolder.rootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    intentToCorrespondingField(title, name);
+                }
+            });
+        }
+
+        private void intentToCorrespondingField(String category, String name) {
+            switch (category) {
+                case "Speakers":
+                    SpeakerModel speakerModel = new SpeakerModel();
+                    for (int i = 0; i < speakerModels.size(); i++) {
+                        if (name.equals(speakerModels.get(i).getSpeakerName())) {
+//                            startIntent
+                            speakerModel = speakerModels.get(i);
+                            Intent intent = new Intent(SearchActivity.this, SpeakerDetailActivity.class);
+                            intent.putExtra(Constants.speakerConstant, speakerModels.get(i).getSpeakerName());
+                            startActivity(intent);
+                        }
+                    }
+                    break;
+                case "Sponsors":
+                    SponserModel sponserModel = new SponserModel();
+                    for (int i = 0; i < sponsorsModels.size(); i++) {
+                        if (name.equals(sponsorsModels.get(i).getTitle())) {
+//                            startIntent
+                            sponserModel = sponsorsModels.get(i);
+
+                        }
+                    }
+                    break;
+                case "Schedules":
+                    EventModel eventModel = new EventModel();
+                    for (int i = 0; i < eventModels.size(); i++) {
+                        if (name.equals(eventModels.get(i).getEventTitle())) {
+//                            startIntent
+                            eventModel = eventModels.get(i);
+
+                            Intent in = new Intent(SearchActivity.this, ScheduleDetailActivity.class);
+
+                            Bundle bundle = new Bundle();
+
+                            bundle.putString(Constants.scheduleStartTimeConstant, eventModel.getStartTime());
+                            bundle.putString(Constants.scheduleEndTimeConstant, eventModel.getEndTime());
+                            bundle.putString(Constants.scheduleTopicConstant, eventModel.getEventTitle());
+                            bundle.putString(Constants.scheduleDescriptionConstant, eventModel.getAbstractDetail());
+                            bundle.putString(Constants.scheduleKeywordsConstant, eventModel.getKeywords());
+                            bundle.putString(Constants.scheduleSpeakersConstant, eventModel.getEventSpeaker());
+                            bundle.putString(Constants.scheduleIDConstant, eventModel.getId());
+                            bundle.putString(Constants.scheduleScheduleConstant, eventModel.getScheduleName());
+                            bundle.putString(Constants.scheduleSessionConstant, eventModel.getSessionTitle());
+                            bundle.putBoolean(Constants.scheduleBookmarkConstant, eventModel.isBookmarked());
+
+                            in.putExtras(bundle);
+                            startActivity(in);
+
+                        }
+                    }
+                    break;
+            }
+
+
+        }
+
+        @Override
+        public RecyclerView.ViewHolder getHeaderViewHolder(View view) {
+            return new HeaderViewHolder(view);
+        }
+
+        @Override
+        public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder) {
+
+            HeaderViewHolder headerHolder = (HeaderViewHolder) holder;
+            headerHolder.tvTitle.setText(title);
+
+        }
+
+        @Override
+        public void filter(String query) {
+            if (TextUtils.isEmpty(query)) {
+                filteredList = new ArrayList<>(list);
+                this.setVisible(true);
+            } else {
+                filteredList.clear();
+
+
+                for (String value : list) {
+                    if ((value.toLowerCase(Locale.getDefault()).contains(query.toLowerCase(Locale.getDefault())))) {
+                        filteredList.add(value);
+                    }
+                    for (String nn : abstracts) {
+                        if ((nn.toLowerCase(Locale.getDefault()).contains(query.toLowerCase(Locale.getDefault())))) {
+                            if (!filteredList.contains(value)) {
+                                filteredList.add(value);
+                                Log.d("checkcheck", nn + " /////" + query + "----" + value + " &&&&&" + filteredList.size());
+
+                            }
+                        }
+
+                    }
+
+                }
+//                for (String value : abstracts) {
+
+
+//                    if ((value.toLowerCase(Locale.getDefault()).contains(query.toLowerCase(Locale.getDefault())))) {
+//                        filteredList.add(value);
+//                    }
+//
+//                }
+
+                this.setVisible(!filteredList.isEmpty());
+            }
+        }
+    }
+
     private List<String> getContactsWithLetter(String category) {
         List<String> contacts = new ArrayList<>();
 
@@ -136,7 +305,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 break;
             case "Schedules":
                 for (int i = 0; i < eventModels.size(); i++)
-                    contacts.add(eventModels.get(i).getTopic());
+                    contacts.add(eventModels.get(i).getEventTitle());
                 break;
 
         }
@@ -177,167 +346,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         sponsorSearchRecyclerView = (RecyclerView) findViewById(R.id.sponsorSearchRecyclerView);
 
     }
-
-    private class ContactsSection extends StatelessSection implements FilterableSection {
-
-        final String title;
-        final List<String> list;
-        List<String> filteredList;
-
-        ContactsSection(String title, List<String> list) {
-            super(SectionParameters.builder()
-                    .itemResourceId(R.layout.section_ex7_item)
-                    .headerResourceId(R.layout.section_ex7_header)
-                    .build());
-
-            this.title = title;
-            this.list = list;
-            this.filteredList = new ArrayList<>(list);
-        }
-
-        @Override
-        public int getContentItemsTotal() {
-            return filteredList.size();
-        }
-
-        @Override
-        public RecyclerView.ViewHolder getItemViewHolder(View view) {
-            return new ItemViewHolder(view);
-        }
-
-        @Override
-        public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
-            final ItemViewHolder itemHolder = (ItemViewHolder) holder;
-
-            final String name = filteredList.get(position);
-            itemHolder.tvItem.setText(name);
-
-            if (title.equals("Speakers")) {
-                itemHolder.imgItem.setImageResource(R.drawable.ic_speaker);
-            } else if (title.equals("Sponsors")) {
-                itemHolder.imgItem.setImageResource(R.drawable.ic_sponsers);
-
-            } else if (title.equals("Schedules")) {
-                itemHolder.imgItem.setImageResource(R.drawable.ic_event_note_black_24dp);
-
-            }
-
-            itemHolder.rootView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    intentToCorrespondingField(title, name);
-//                    Toast.makeText(SearchActivity.this,
-//                            String.format("Clicked on position #%s of Section %s",
-//                                    sectionAdapter.getPositionInSection(itemHolder.getAdapterPosition()),
-//                                    title),
-//                            Toast.LENGTH_SHORT).show();
-//                    Log.d("position",itemHolder.getAdapterPosition() + "--1st");
-//                    Log.d("position",itemHolder.getLayoutPosition() + "---2nd");
-//                    Log.d("position",itemHolder.getOldPosition() + "---3rd");
-//                    Toast.makeText(SearchActivity.this,
-//                            String.format("Clicked on position #%s of Section %s",
-//                                    sectionAdapter.getPositionInSection(itemHolder.getLayoutPosition()),
-//                                    title),
-//                            Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-
-        private void intentToCorrespondingField(String category, String name) {
-            Toast.makeText(SearchActivity.this, name, Toast.LENGTH_SHORT).show();
-            switch (category) {
-                case "Speakers":
-                    SpeakerModel speakerModel = new SpeakerModel();
-                    for (int i = 0; i < speakerModels.size(); i++) {
-                        Log.d("itemCheck",name + " -- " + category + " -- "+ speakerModels.get(i).getSpeakerName());
-                        if (name.equals(speakerModels.get(i).getSpeakerName())) {
-//                            startIntent
-                            speakerModel = speakerModels.get(i);
-                            Intent intent = new Intent(SearchActivity.this, SpeakerDetailActivity.class);
-                            intent.putExtra(Constants.speakerConstant, speakerModels.get(i).getSpeakerName());
-                            startActivity(intent);
-                            Toast.makeText(SearchActivity.this, "speaker", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    break;
-                case "Sponsors":
-                    SponserModel sponserModel = new SponserModel();
-                    for (int i = 0; i < sponsorsModels.size(); i++) {
-                        if (name.equals(sponsorsModels.get(i).getTitle())) {
-//                            startIntent
-                            sponserModel = sponsorsModels.get(i);
-                            Toast.makeText(SearchActivity.this, "sponsor", Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-                    break;
-                case "Schedules":
-                    EventModel eventModel = new EventModel();
-                    for (int i = 0; i < eventModels.size(); i++) {
-                        if (name.equals(eventModels.get(i).getTopic())) {
-//                            startIntent
-                            eventModel = eventModels.get(i);
-
-                            Intent in = new Intent(SearchActivity.this, ScheduleDetailActivity.class);
-
-                            Bundle bundle = new Bundle();
-
-                            bundle.putString(Constants.scheduleStartTimeConstant, eventModel.getStartTime());
-                            bundle.putString(Constants.scheduleEndTimeConstant, eventModel.getEndTime());
-                            bundle.putString(Constants.scheduleTopicConstant, eventModel.getTopic());
-                            bundle.putString(Constants.scheduleDescriptionConstant, eventModel.getDescription());
-                            bundle.putString(Constants.scheduleKeywordsConstant, eventModel.getKeywords());
-                            bundle.putString(Constants.scheduleSpeakersConstant, eventModel.getSpeakers());
-                            bundle.putString(Constants.scheduleIDConstant,eventModel.getId());
-                            bundle.putString(Constants.scheduleScheduleConstant,eventModel.getScheduleName());
-                            bundle.putString(Constants.scheduleSessionConstant,eventModel.getSessionName());
-                            bundle.putBoolean(Constants.scheduleBookmarkConstant,eventModel.isBookmarked());
-
-                            in.putExtras(bundle);
-                            startActivity(in);
-                            Toast.makeText(SearchActivity.this, "event", Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-                    break;
-            }
-
-
-        }
-
-        @Override
-        public RecyclerView.ViewHolder getHeaderViewHolder(View view) {
-            return new HeaderViewHolder(view);
-        }
-
-        @Override
-        public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder) {
-
-            HeaderViewHolder headerHolder = (HeaderViewHolder) holder;
-            headerHolder.tvTitle.setText(title);
-
-        }
-
-        @Override
-        public void filter(String query) {
-            if (TextUtils.isEmpty(query)) {
-                filteredList = new ArrayList<>(list);
-                this.setVisible(true);
-            } else {
-                filteredList.clear();
-                for (String value : list) {
-                    if (value.toLowerCase(Locale.getDefault())
-                            .contains(query.toLowerCase(Locale.getDefault()))) {
-                        filteredList.add(value);
-                    }
-                }
-
-                this.setVisible(!filteredList.isEmpty());
-            }
-        }
-    }
-
 
     private class HeaderViewHolder extends RecyclerView.ViewHolder {
 
@@ -397,4 +405,14 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (this instanceof AppCompatActivity) {
+            AppCompatActivity activity = this;
+            if (activity.getSupportActionBar() != null) {
+                activity.getSupportActionBar().setTitle(R.string.nav_search);
+            }
+        }
+    }
 }

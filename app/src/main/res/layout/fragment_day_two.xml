@@ -5,14 +5,33 @@
     android:layout_height="match_parent"
     tools:context=".schedule.view.DayTwoFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/eventOneRecylerView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_schedule"
-        android:paddingLeft="@dimen/mainMargin"
-        android:paddingRight="@dimen/mainMargin"
-        android:paddingBottom="@dimen/fab_margin"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:drawableRight="@drawable/ic_search_black_24dp"
+            android:fontFamily="@font/nunitoregular"
+            android:hint="Search"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingLeft="@dimen/fab_margin"
+            android:paddingRight="@dimen/fab_margin"
+            android:paddingBottom="@dimen/smallMargin"
+            android:singleLine="true" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/eventOneRecylerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/mainMargin"
+            android:paddingRight="@dimen/mainMargin"
+            android:paddingBottom="@dimen/fab_margin"
+            tools:listitem="@layout/item_schedule" />
+    </LinearLayout>
 </FrameLayout>

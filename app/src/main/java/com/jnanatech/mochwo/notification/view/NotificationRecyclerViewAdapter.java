@@ -35,9 +35,9 @@ public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<Notifi
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         NotificationModel currentNotification = notificationModels.get(position);
 
-        holder.date.setText(currentNotification.getDate());
-        holder.description.setText(currentNotification.getDescription() + " has been added as Featured " + currentNotification.getCategory() + ".");
-        holder.about.setText("Notification About " + currentNotification.getCategory());
+        holder.date.setText(currentNotification.getTitle());
+        holder.description.setText(currentNotification.getDetail() );
+        holder.about.setText("Notification About " );
 
 
     }

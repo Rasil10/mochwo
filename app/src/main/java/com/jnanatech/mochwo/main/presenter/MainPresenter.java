@@ -7,9 +7,8 @@ public interface MainPresenter {
     void setSchedule2();
     void setRemainingTime();
     void getSpeakers();
-    void checkSpeakerSize();
     void getSponsers();
+    void getUpdates();
 
-    void showLoadingDialog();
-    void dismissLoadingDialog();
+
 }

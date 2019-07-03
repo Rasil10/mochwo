@@ -1,64 +1,52 @@
-package com.jnanatech.mochwo.bookmark.view;
+package com.jnanatech.mochwo.schedule.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jnanatech.mochwo.R;
 import com.jnanatech.mochwo.schedule.model.EventModel;
-import com.jnanatech.mochwo.schedule.view.EventAdapter;
 import com.jnanatech.mochwo.scheduleDetail.ScheduleDetailActivity;
-import com.jnanatech.mochwo.speakers.model.SpeakerModel;
 import com.jnanatech.mochwo.utils.Constants;
 
 import java.util.ArrayList;
 
-public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyViewHolder> {
-    private Context context;
-    private ArrayList<EventModel> eventModels;
+public class InnerRecyclerViewAdapter extends RecyclerView.Adapter<InnerRecyclerViewAdapter.MyViewHolder> {
 
-    ArrayList<SpeakerModel> speakerModels;
+    Context context;
+    ArrayList<EventModel> innerEvents;
 
-
-    public BookmarkAdapter(Context context, ArrayList<EventModel> eventModels, ArrayList<SpeakerModel> speakerModels) {
+    public InnerRecyclerViewAdapter(Context context, ArrayList<EventModel> innerEvents) {
         this.context = context;
-        this.eventModels = eventModels;
-        this.speakerModels = speakerModels;
-
+        this.innerEvents = innerEvents;
     }
 
     @NonNull
     @Override
-    public BookmarkAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_schedule, parent, false);
-        return new MyViewHolder(view);
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_inner_event, parent, false);
+
+        return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookmarkAdapter.MyViewHolder holder, int position) {
-        final EventModel currentEvent = eventModels.get(position);
-
-        holder.eventStartingTime.setText(currentEvent.getStartTime());
-        holder.eventEndingTime.setText(currentEvent.getEndTime());
-        holder.eventTitle.setText(currentEvent.getEventTitle());
-        holder.eventSpeakers.setText(currentEvent.getEventSpeaker());
-
-
-        holder.mainlayout.setOnClickListener(new View.OnClickListener() {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+        final EventModel currentEvent = innerEvents.get(position);
+        holder.title.setText((position + 1) + " " + innerEvents.get(position).getEventTitle());
+        holder.speakers.setText(innerEvents.get(position).getEventSpeaker());
+        holder.eventLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent i = new Intent(context, ScheduleDetailActivity.class);
-
+                Intent intent = new Intent(context, ScheduleDetailActivity.class);
                 Bundle bundle = new Bundle();
 
                 bundle.putString(Constants.scheduleIDConstant, currentEvent.getId());
@@ -77,33 +65,27 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
                 bundle.putString(Constants.scheduleSessionConstant, currentEvent.getSessionTitle());
                 bundle.putBoolean(Constants.scheduleBookmarkConstant, currentEvent.isBookmarked());
 
-                i.putExtras(bundle);
-                context.startActivity(i);
-                ((Activity)context).recreate();
-
+                intent.putExtras(bundle);
+                context.startActivity(intent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return eventModels.size();
+        return innerEvents.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        CardView mainlayout;
-        TextView eventStartingTime;
-        TextView eventEndingTime;
-        TextView eventTitle;
-        TextView eventSpeakers;
+        TextView title;
+        TextView speakers;
+        LinearLayout eventLL;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            mainlayout = (CardView) itemView.findViewById(R.id.mainlayout);
-            eventStartingTime = (TextView) itemView.findViewById(R.id.eventStartingTime);
-            eventEndingTime = (TextView) itemView.findViewById(R.id.eventEndingTime);
-            eventTitle = (TextView) itemView.findViewById(R.id.eventTitle);
-            eventSpeakers = (TextView) itemView.findViewById(R.id.eventSpeakers);
+            title = (TextView) itemView.findViewById(R.id.eventTitle);
+            speakers = (TextView) itemView.findViewById(R.id.eventSpeakers);
+            eventLL = (LinearLayout) itemView.findViewById(R.id.eventLL);
         }
     }
 }

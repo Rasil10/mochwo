@@ -10,6 +10,5 @@ public interface MainView {
     void getEvent(Conference conference);
     void getRemainingTime(long remainingTime);
     void getSpeakerChangeSize(int changeInSize,int originalSize);
-    void getSponser(ArrayList<SponserModel> sponserModels);
 
 }

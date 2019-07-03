@@ -1,5 +1,7 @@
 package com.jnanatech.mochwo.scheduleDetail;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,49 +14,48 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
 import com.jnanatech.mochwo.R;
 import com.jnanatech.mochwo.bookmark.model.BookmarkModel;
 import com.jnanatech.mochwo.main.model.Conference;
 import com.jnanatech.mochwo.schedule.model.EventModel;
-import com.jnanatech.mochwo.speakerDetail.view.SpeakerDetailActivity;
-import com.jnanatech.mochwo.speakers.model.SpeakerModel;
+import com.jnanatech.mochwo.speakerDetail.model.ChipTag;
+import com.jnanatech.mochwo.utils.AlarmReceiver;
 import com.jnanatech.mochwo.utils.Constants;
 import com.jnanatech.mochwo.utils.database.RealmController;
-import com.squareup.picasso.Picasso;
+import com.jnanatech.mochwo.utils.sharedPreference.ScheduleNotificationNumberSharedPrefHelper;
+import com.plumillonforge.android.chipview.Chip;
+import com.plumillonforge.android.chipview.ChipView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 public class ScheduleDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EventModel event = new EventModel();
-    private SpeakerModel speaker;
     private TextView scheduleTitle;
     private TextView scheduleTime;
     private TextView scheduleDate;
 
-    private CircleImageView speakerImageView;
     private TextView speakerName;
-    private TextView speakerPosition;
-    private TextView scheduleLocation;
+    private TextView speakerDetail;
 
     private ImageView bookMarkImageView;
     private TextView bookMarkTextView;
 
+    private TextView eventDetailTextView;
+
     private ImageView shareImageView;
 
     private LinearLayout speakerLL;
+    private TextView noSpeakerTextView;
+
+    ChipView keywordChipGroup;
+
 
     RealmController realmController;
     Conference conference;
@@ -62,6 +63,9 @@ public class ScheduleDetailActivity extends AppCompatActivity implements View.On
     boolean bookMarked = false;
 
     ArrayList<BookmarkModel> bookmarkModels = new ArrayList<>();
+
+    AlarmManager alarm;
+    PendingIntent notificationPendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,77 +75,96 @@ public class ScheduleDetailActivity extends AppCompatActivity implements View.On
         realmController = RealmController.with(this);
         conference = realmController.getConference();
         bookmarkModels = realmController.getBookmarks();
+        getEvent();
+
+        bindActivity();
+
+
+    }
+
+    private void getEvent() {
 
         Bundle bundle = new Bundle();
         bundle = getIntent().getExtras();
         if (bundle != null) {
-            event.setStartTime(bundle.getString(Constants.scheduleStartTimeConstant));
-            event.setEndTime(bundle.getString(Constants.scheduleEndTimeConstant));
-            event.setTopic(bundle.getString(Constants.scheduleTopicConstant));
-            event.setDescription(bundle.getString(Constants.scheduleDescriptionConstant));
-            event.setKeywords(bundle.getString(Constants.scheduleKeywordsConstant));
-            event.setSpeakers(bundle.getString(Constants.scheduleSpeakersConstant));
             event.setId(bundle.getString(Constants.scheduleIDConstant));
+            event.setStartTime(bundle.getString(Constants.scheduleStartTimeConstant));
+            event.setStartTime("16:24 pm");
+            event.setEndTime(bundle.getString(Constants.scheduleEndTimeConstant));
+            event.setChairPersonName(bundle.getString(Constants.scheduleChairPersonConstant));
+            event.setChairPersonDetail(bundle.getString(Constants.scheduleChairPersonDetailConstant));
+
+            event.setEventTitle(bundle.getString(Constants.scheduleTopicConstant));
+            event.setEventSpeaker(bundle.getString(Constants.scheduleSpeakersConstant));
+            event.setSpeakerDetail(bundle.getString(Constants.scheduleSpeakersDetailConstant));
+            event.setAbstractDetail(bundle.getString(Constants.scheduleDescriptionConstant));
+            event.setKeywords(bundle.getString(Constants.scheduleKeywordsConstant));
+
             event.setScheduleName(bundle.getString(Constants.scheduleScheduleConstant));
-            event.setSessionName(bundle.getString(Constants.scheduleSessionConstant));
+            event.setSessionTitle(bundle.getString(Constants.scheduleSessionConstant));
             event.setBookmarked(bundle.getBoolean(Constants.scheduleBookmarkConstant));
-
-
-            if (realmController.getSpeakerByName(event.getSpeakers()) == null) {
-                onBackPressed();
-                Toast.makeText(this, "No Data Availble.", Toast.LENGTH_SHORT).show();
-
-            } else {
-                speaker = realmController.getSpeakerByName(event.getSpeakers());
-            }
 
 
         } else {
             Toast.makeText(this, "No Data Availble.", Toast.LENGTH_SHORT).show();
             onBackPressed();
         }
-
-        bindActivity();
     }
 
     private void bindActivity() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setElevation(0);
 
+        noSpeakerTextView = (TextView) findViewById(R.id.noSpeakerTextView);
+
+
         scheduleTitle = (TextView) findViewById(R.id.scheduleTitle);
-        scheduleTitle.setText(event.getTopic());
+        scheduleTitle.setText(event.getEventTitle());
 
         scheduleTime = (TextView) findViewById(R.id.scheduleTimeTextView);
         scheduleTime.setText(event.getStartTime() + " - " + event.getEndTime());
 
         scheduleDate = (TextView) findViewById(R.id.scheduleDate);
 
-        if (event.getScheduleName().equalsIgnoreCase("schedule_d1")) {
+        if (event.getScheduleName().equalsIgnoreCase("d1-schedule")) {
             scheduleDate.setText("October 18, 2019");
         } else {
             scheduleDate.setText("October 19, 2019");
         }
 
-        speakerLL = (LinearLayout) findViewById(R.id.speakerLL);
-        speakerLL.setOnClickListener(this);
 
-        speakerImageView = (CircleImageView) findViewById(R.id.speakerImageView);
-        setImage(speaker.getFeatureMediaLink(), speakerImageView);
+        speakerName = (TextView) findViewById(R.id.speakersTextView);
+        speakerName.setText(event.getEventSpeaker());
+        speakerDetail = (TextView) findViewById(R.id.speakerDetail);
+        speakerDetail.setText(event.getSpeakerDetail());
 
-        speakerName = (TextView) findViewById(R.id.speakerName);
-        speakerName.setText(speaker.getSpeakerName());
-
-        speakerPosition = (TextView) findViewById(R.id.speakerPosition);
-        speakerPosition.setText(speaker.getCurrentPosition());
-
-        scheduleLocation = (TextView) findViewById(R.id.scheduleLocation);
-        scheduleLocation.setText(conference.getLocation());
+//        if(speaker!=null){
+//            speakerLL = (LinearLayout) findViewById(R.id.speakerLL);
+//            speakerLL.setOnClickListener(this);
+//
+//
+//            speakerName = (TextView) findViewById(R.id.speakerName);
+//            speakerName.setText(event.getEventSpeaker());
+//
+//            speakerDetail = (TextView) findViewById(R.id.speakerDetail);
+//            speakerDetail.setText(event.getSpeakerDetail());
+//        }
+//
 
         bookMarkImageView = (ImageView) findViewById(R.id.bookmarkImageView);
         bookMarkImageView.setOnClickListener(this);
         bookMarkTextView = (TextView) findViewById(R.id.bookMarkTextView);
 
-        Log.d("bookmarkStatus", event.isBookmarked() + "---activity check first");
+        eventDetailTextView = (TextView) findViewById(R.id.eventDetailTextView);
+        eventDetailTextView.setText(event.getAbstractDetail());
+
+        keywordChipGroup = (ChipView) findViewById(R.id.keywordChipGroup);
+        String[] keyWordsArray = event.getKeywords().split(",");
+        List<Chip> chipList = new ArrayList<>();
+        for (int i = 0; i < keyWordsArray.length; i++) {
+            chipList.add(new ChipTag(keyWordsArray[i]));
+        }
+        keywordChipGroup.setChipList(chipList);
 
         Boolean flag = false;
         for (int i = 0; i < bookmarkModels.size(); i++) {
@@ -176,10 +199,10 @@ public class ScheduleDetailActivity extends AppCompatActivity implements View.On
         switch (v.getId()) {
             case R.id.speakerLL:
 
-                Intent intent = new Intent(this, SpeakerDetailActivity.class);
-                intent.putExtra(Constants.speakerConstant, speaker.getSpeakerName());
-                startActivity(intent);
-                break;
+//                Intent intent = new Intent(this, SpeakerDetailActivity.class);
+//                intent.putExtra(Constants.speakerConstant, speaker.getSpeakerName());
+//                startActivity(intent);
+//                break;
 
             case R.id.bookmarkImageView:
 
@@ -202,7 +225,10 @@ public class ScheduleDetailActivity extends AppCompatActivity implements View.On
     }
 
     private void updateBookmarkIcon(boolean bookMarked) {
+
         if (bookMarked) {
+
+            setUpNotification();
             bookMarkImageView.setImageResource(R.drawable.ic_bookmark_true);
             bookMarkTextView.setText("Bookmarked");
             event.setBookmarked(true);
@@ -214,10 +240,56 @@ public class ScheduleDetailActivity extends AppCompatActivity implements View.On
             bookMarkTextView.setText("Bookmark");
             event.setBookmarked(false);
             realmController.updateEvent(event);
-
             removeFromBookmark(event.getId());
 
         }
+    }
+
+
+
+
+    public void setUpNotification()  {
+
+        ScheduleNotificationNumberSharedPrefHelper sharedPrefHelper = new ScheduleNotificationNumberSharedPrefHelper(this);
+
+        Intent intent = new Intent(ScheduleDetailActivity.this, AlarmReceiver.class);
+        intent.putExtra("notificationid", sharedPrefHelper.getCount());
+        intent.putExtra("notificationDetail", event.getEventTitle() + " is starting in 1 hour.");
+
+        notificationPendingIntent = PendingIntent.getBroadcast(ScheduleDetailActivity.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+
+// replace with your start date string
+        String[] splitByColon = event.getStartTime().split(":");
+        int hoursValue = Integer.parseInt(splitByColon[0]);
+
+        if(event.getStartTime().toLowerCase().contains("am")){
+            hoursValue = hoursValue + 12;
+        }
+        String[] splitForMins = splitByColon[1].split(" ");
+        int minutesValue = Integer.parseInt(splitForMins[0]);
+
+
+        Log.d("dateCheck",hoursValue +"::"+ minutesValue);
+
+
+
+        //create time
+        Calendar startTime = Calendar.getInstance();
+        startTime.set(Calendar.HOUR_OF_DAY, hoursValue);
+        startTime.set(Calendar.MINUTE, minutesValue);
+        startTime.set(Calendar.SECOND, 0);
+
+        long alarmStartTime = startTime.getTimeInMillis();
+
+        //set alarm
+        alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime,notificationPendingIntent);
+
+
     }
 
     private void removeFromBookmark(String id) {
@@ -234,48 +306,6 @@ public class ScheduleDetailActivity extends AppCompatActivity implements View.On
             realmController.addBookmark(bookmarkModels.get(i));
         }
 
-    }
-
-    private void setImage(String featureMediaLink, final CircleImageView speakerImageView) {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonArrayRequest
-                jsonArrayRequest
-                = new JsonArrayRequest(
-                Request.Method.GET,
-                featureMediaLink,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                JSONObject jsonObject = response.getJSONObject(0);
-                                JSONObject mediaObject = jsonObject.getJSONObject("media_details");
-                                JSONObject imageSizeObject = mediaObject.getJSONObject("sizes");
-                                JSONObject finalImageObject = imageSizeObject.getJSONObject("et-pb-gallery-module-image-portrait");
-                                String url = finalImageObject.getString("source_url");
-
-                                Picasso.get().load(url)
-                                        .placeholder(R.drawable.ic_terrain_black_24dp)
-                                        .error(R.drawable.ic_terrain_black_24dp)
-                                        .into(speakerImageView);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                    }
-
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ScheduleDetailActivity.this, "Error Loading Image.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-        requestQueue.add(jsonArrayRequest);
     }
 
 

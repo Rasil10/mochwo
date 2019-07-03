@@ -12,6 +12,15 @@ public class SponserModel extends RealmObject implements Serializable {
 
     private String title;
     private String url;
+    private String category;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public int getId() {
         return id;

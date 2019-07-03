@@ -3,32 +3,40 @@ package com.jnanatech.mochwo.notification.model;
 import io.realm.RealmObject;
 
 public class NotificationModel extends RealmObject {
+    private String title;
+    private String detail;
+    private String link;
+    private String image;
 
-    String category;
-    String description;
-    String date;
-
-    public String getCategory() {
-        return category;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
-    public String getDate() {
-        return date;
+    public String getLink() {
+        return link;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

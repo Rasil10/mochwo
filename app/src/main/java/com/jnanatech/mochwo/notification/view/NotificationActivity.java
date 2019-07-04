@@ -31,6 +31,7 @@ public class NotificationActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         realmController = RealmController.with(this);
+
         notificationSizeSharedPrefHelper = new NotificationSizeSharedPrefHelper(this);
         notificationSizeSharedPrefHelper.saveNotificationNumberNumber(realmController.getAllNotification().size());
 

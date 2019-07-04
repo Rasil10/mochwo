@@ -136,7 +136,6 @@ public class DayOneFragment extends Fragment implements DayOneView {
     @Override
     public void getDayOneEvents(ArrayList<EventModel> dayOneEvents) {
         this.dayOneEvents = dayOneEvents;
-        Log.d("eventCheck", dayOneEvents.get(0).getEventTitle());
     }
 
 

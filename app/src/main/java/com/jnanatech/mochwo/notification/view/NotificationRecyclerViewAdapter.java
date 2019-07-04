@@ -41,23 +41,21 @@ public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<Notifi
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final NotificationModel currentNotification = notificationModels.get(position);
 
-        Log.d("newsCheck",currentNotification.getCategory());
-
         holder.title.setText(currentNotification.getTitle());
-        holder.description.setText(Html.fromHtml(currentNotification.getDetail()));
+        holder.description.setText(Html.fromHtml(currentNotification.getDetail().replace("\n","")));
 
         holder.mainView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 switch (currentNotification.getCategory()) {
-                    case "speakers":
+                    case "speaker":
                         context.startActivity(new Intent(context, SpeakersActivity.class));
                         break;
-                    case "sponsors":
+                    case "collaborator":
                         context.startActivity(new Intent(context, SponserActivity.class));
                         break;
-                    case "schedules":
+                    case "schedule":
                         context.startActivity(new Intent(context, ScheduleActivity.class));
                         break;
                     default:

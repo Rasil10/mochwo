@@ -2,16 +2,23 @@ package com.jnanatech.mochwo.main.view;
 
 import android.Manifest;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.media.AudioAttributes;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +33,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -111,9 +119,9 @@ public class MainActivity extends AppCompatActivity
                 //Do something after 20 seconds
                 mainPresenter.getUpdates();
                 mainPresenter.checkNotificationSize();
-                handler.postDelayed(this, 10000);
+                handler.postDelayed(this, 8000);
             }
-        }, 10000);
+        }, 8000);
 
 
     }
@@ -328,38 +336,79 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void getNotificationChangeSize(int changeInSize,int newSize, boolean changed, NotificationModel notification) {
-        if (changeInSize<1) {
+    public void getNotificationChangeSize(int changeInSize, int newSize, boolean changed, NotificationModel notificationModel) {
+        if (changeInSize == 0) {
             invalidateOptionsMenu();
             changeNotificationIcon = false;
 
-        } else {
+        } else if(changeInSize>0){
             invalidateOptionsMenu();
             changeNotificationIcon = true;
             try {
                 NotificationSizeSharedPrefHelper notificationSizeSharedPrefHelper = new NotificationSizeSharedPrefHelper(this);
                 notificationSizeSharedPrefHelper.saveNotificationNumberNumber(newSize);
+//
+//
+//                Intent intent = new Intent(this, NotificationActivity.class);
+//                PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//                NotificationCompat.Builder b = new NotificationCompat.Builder(this);
+//
+//                b.setAutoCancel(true)
+//                        .setDefaults(Notification.DEFAULT_ALL)
+//                        .setWhen(System.currentTimeMillis())
+//                        .setSmallIcon(R.mipmap.ic_launcher)
+//                        .setContentTitle(notificationModel.getTitle())
+//                        .setContentText(Html.fromHtml(notificationModel.getDetail()))
+//                        .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND)
+//                        .setContentIntent(contentIntent);
+//
+//                NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+//                notificationManager.notify(newSize, b.build());
 
+                Toast.makeText(this, "New Notification", Toast.LENGTH_SHORT).show();
+
+                CharSequence channelName = notificationModel.getTitle();
+                String channelDesc = "channelDesc";
+                // Create the NotificationChannel, but only on API 26+ because
+                // the NotificationChannel class is new and not in the support library
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    int importance = NotificationManager.IMPORTANCE_HIGH;
+                    NotificationChannel channel = new NotificationChannel(notificationModel.getTitle(), channelName, importance);
+                    channel.setDescription(channelDesc);
+                    // Register the channel with the system; you can't change the importance
+                    // or other notification behaviors after this
+                    NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                    assert notificationManager != null;
+                    NotificationChannel currChannel = notificationManager.getNotificationChannel(notificationModel.getTitle());
+                    if (currChannel == null)
+                        notificationManager.createNotificationChannel(channel);
+                }
 
                 Intent intent = new Intent(this, NotificationActivity.class);
-                PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                NotificationCompat.Builder b = new NotificationCompat.Builder(this);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-                b.setAutoCancel(true)
-                        .setDefaults(Notification.DEFAULT_ALL)
-                        .setWhen(System.currentTimeMillis())
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, notificationModel.getTitle())
                         .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle(notification.getTitle())
-                        .setContentText(notification.getDetail())
-                        .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND)
-                        .setContentIntent(contentIntent);
+                        .setContentTitle(notificationModel.getTitle())
+                        .setContentText(Html.fromHtml(notificationModel.getDetail()))
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true);
+                Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-                NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(1, b.build());
-                Toast.makeText(this, "New Notification", Toast.LENGTH_SHORT).show();
-            }
-            catch (Exception e){
+                mBuilder.setSound(uri);
+
+
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+                int notificationId = (int) (System.currentTimeMillis()/4);
+                notificationManager.notify(notificationId, mBuilder.build());
+
+
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

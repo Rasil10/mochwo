@@ -3,7 +3,9 @@ package com.jnanatech.mochwo.main.presenter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,6 +15,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.jnanatech.mochwo.News.model.NewsModel;
+import com.jnanatech.mochwo.R;
 import com.jnanatech.mochwo.main.model.Conference;
 import com.jnanatech.mochwo.main.view.MainView;
 import com.jnanatech.mochwo.notification.model.NotificationModel;
@@ -229,7 +232,6 @@ public class MainImplementor implements MainPresenter {
         for (int i = 0; i < temporaryEvents.size(); i++) {
             if (temporaryEvents.get(i).getId().equals(id)) {
                 if (temporaryEvents.get(i).isBookmarked()) {
-                    Log.d("bookmarkStatus", temporaryEvents.get(i).isBookmarked() + " ----");
                     flag = true;
                     break;
                 } else {
@@ -515,6 +517,8 @@ public class MainImplementor implements MainPresenter {
     @Override
     public void getNews() {
         if (Network.isNetworkAvailable(context)) {
+
+            news.clear();
             JsonArrayRequest
                     jsonArrayRequest
                     = new JsonArrayRequest(
@@ -525,9 +529,9 @@ public class MainImplementor implements MainPresenter {
                         @Override
                         public void onResponse(JSONArray response) {
                             try {
-                                NewsModel newsModel = new NewsModel();
-
                                 for (int i = 0; i < response.length(); i++) {
+                                    NewsModel newsModel = new NewsModel();
+
                                     JSONObject newsObject = response.getJSONObject(i);
 
                                     newsModel.setId(newsObject.getInt("id"));
@@ -536,19 +540,19 @@ public class MainImplementor implements MainPresenter {
                                     JSONObject titleObject = newsObject.getJSONObject("title");
                                     newsModel.setHeading(titleObject.getString("rendered"));
 
-                                    JSONObject contentObjcet = newsObject.getJSONObject("meta");
-                                    newsModel.setContent(contentObjcet.getString("_et_pb_old_content"));
+                                    JSONObject contentObjcet = newsObject.getJSONObject("excerpt");
+                                    newsModel.setContent(contentObjcet.getString("rendered"));
+
+                                    news.add(newsModel);
                                 }
 
-                                news.add(newsModel);
-                                Log.d("newsCheck",newsModel.getHeading());
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 
                             realmController.clearNews();
                             realmController.addAllNews(news);
-                            Log.d("newsCheck", news.get(0).getHeading() + "");
 
 //                            for (int i = 0; i < response.length(); i++) {
 //                                try {
@@ -587,86 +591,8 @@ public class MainImplementor implements MainPresenter {
     }
 
     @Override
-    public void getUpdates() {
-        notifications.clear();
-        if (Network.isNetworkAvailable(context)) {
-            JsonObjectRequest
-                    jsonObjectRequest
-                    = new JsonObjectRequest(
-                    Request.Method.GET,
-                    Constants.URLUpdates,
-                    null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-
-
-                            try {
-                                JSONObject acfObject = response.getJSONObject("acf");
-                                JSONArray updatesArray = acfObject.getJSONArray("notification");
-
-                                for (int i = 0; i < updatesArray.length(); i++) {
-                                    NotificationModel notificationModel = new NotificationModel();
-                                    JSONObject updateObject = updatesArray.getJSONObject(i);
-
-
-                                    if (updateObject.getString("title").length() > 0)
-                                        notificationModel.setTitle(updateObject.getString("title"));
-
-                                    if (updateObject.getString("details").length() > 0)
-                                        notificationModel.setDetail(updateObject.getString("details"));
-
-                                    if (updateObject.getString("category").length() > 0)
-                                        notificationModel.setCategory(updateObject.getString("category"));
-
-                                    notifications.add(notificationModel);
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                            realmController.clearAllNotification();
-                            realmController.addAllNotification(notifications);
-
-//                            for (int i = 0; i < response.length(); i++) {
-//                                try {
-//                                    JSONObject speakerObject = response.getJSONObject(i);
-//
-//                                    speakerModels.add(parseSpeakerJson(speakerObject));
-//
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                            realmController.clearAllSpeakerList();
-//                            realmController.addAllSpeakers(speakerModels);
-
-
-                        }
-
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            if (realmController.getAllNotification().size() < 1) {
-                                NoInternetDialog noInternetDialog = new NoInternetDialog(context);
-                                noInternetDialog.showDialog();
-                            }
-                        }
-                    });
-            requestQueue.add(jsonObjectRequest);
-        } else {
-            if (realmController.getAllSponsors().size() < 1) {
-                NoInternetDialog noInternetDialog = new NoInternetDialog(context);
-                noInternetDialog.showDialog();
-            }
-        }
-    }
-
-    @Override
     public void checkNotificationSize() {
 
-        Log.d("notificationCheck", notificationSharedPref.getNotificationSize() + " -- shared pref \n" + realmController.getAllNotification().size() + " -- database");
         if (realmController.getAllNotification().size() == notificationSharedPref.getNotificationSize()) {
             mainView.getNotificationChangeSize(0, realmController.getAllNotification().size(), false, null);
 
@@ -674,6 +600,144 @@ public class MainImplementor implements MainPresenter {
             mainView.getNotificationChangeSize(realmController.getAllNotification().size() - notificationSharedPref.getNotificationSize(), realmController.getAllNotification().size(), true, realmController.getAllNotification().get(realmController.getAllNotification().size() - 1));
         }
 
+    }
+
+    @Override
+    public void getUpdates() {
+
+        new GetNotification().execute();
+
+//        notifications.clear();
+//        if (Network.isNetworkAvailable(context)) {
+//            JsonObjectRequest
+//                    jsonObjectRequest
+//                    = new JsonObjectRequest(
+//                    Request.Method.GET,
+//                    Constants.URLUpdates,
+//                    null,
+//                    new Response.Listener<JSONObject>() {
+//                        @Override
+//                        public void onResponse(JSONObject response) {
+//
+//
+//                            try {
+//                                JSONObject acfObject = response.getJSONObject("acf");
+//                                JSONArray updatesArray = acfObject.getJSONArray("notification");
+//
+//                                for (int i = 0; i < updatesArray.length(); i++) {
+//                                    NotificationModel notificationModel = new NotificationModel();
+//                                    JSONObject updateObject = updatesArray.getJSONObject(i);
+//
+//
+//                                    if (updateObject.getString("title").length() > 0)
+//                                        notificationModel.setTitle(updateObject.getString("title"));
+//
+//                                    if (updateObject.getString("details").length() > 0)
+//                                        notificationModel.setDetail(updateObject.getString("details"));
+//
+//                                    if (updateObject.getString("category").length() > 0)
+//                                        notificationModel.setCategory(updateObject.getString("category"));
+//
+//                                    notifications.add(notificationModel);
+//                                }
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//
+//                            realmController.clearAllNotification();
+//                            realmController.addAllNotification(notifications);
+//
+//                        }
+//
+//                    },
+//                    new Response.ErrorListener() {
+//                        @Override
+//                        public void onErrorResponse(VolleyError error) {
+//                            if (realmController.getAllNotification().size() < 1) {
+//                                NoInternetDialog noInternetDialog = new NoInternetDialog(context);
+//                                noInternetDialog.showDialog();
+//                            }
+//                        }
+//                    });
+//            requestQueue.add(jsonObjectRequest);
+//        } else {
+//            if (realmController.getAllSponsors().size() < 1) {
+//                NoInternetDialog noInternetDialog = new NoInternetDialog(context);
+//                noInternetDialog.showDialog();
+//            }
+//        }
+    }
+
+    private class GetNotification extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            notifications.clear();
+            if (Network.isNetworkAvailable(context)) {
+                JsonObjectRequest
+                        jsonObjectRequest
+                        = new JsonObjectRequest(
+                        Request.Method.GET,
+                        Constants.URLUpdates,
+                        null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+
+                                try {
+                                    JSONObject acfObject = response.getJSONObject("acf");
+                                    JSONArray updatesArray = acfObject.getJSONArray("notification");
+
+                                    for (int i = 0; i < updatesArray.length(); i++) {
+                                        NotificationModel notificationModel = new NotificationModel();
+                                        JSONObject updateObject = updatesArray.getJSONObject(i);
+
+
+                                        if (updateObject.getString("title").length() > 0)
+                                            notificationModel.setTitle(updateObject.getString("title"));
+
+                                        if (updateObject.getString("details").length() > 0)
+                                            notificationModel.setDetail(updateObject.getString("details"));
+
+                                        if (updateObject.getString("category").length() > 0)
+                                            notificationModel.setCategory(updateObject.getString("category"));
+
+                                        notifications.add(notificationModel);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                realmController.clearAllNotification();
+                                realmController.addAllNotification(notifications);
+
+                            }
+
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                if (realmController.getAllNotification().size() < 1) {
+                                    NoInternetDialog noInternetDialog = new NoInternetDialog(context);
+                                    noInternetDialog.showDialog();
+                                }
+                            }
+                        });
+                requestQueue.add(jsonObjectRequest);
+            } else {
+                if (realmController.getAllSponsors().size() < 1) {
+                    NoInternetDialog noInternetDialog = new NoInternetDialog(context);
+                    noInternetDialog.showDialog();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
     }
 
     private SpeakerModel parseSpeakerJson(JSONObject jsonObject) throws JSONException {
@@ -704,6 +768,7 @@ public class MainImplementor implements MainPresenter {
         return speakerModel;
 
     }
+
 
 
 }

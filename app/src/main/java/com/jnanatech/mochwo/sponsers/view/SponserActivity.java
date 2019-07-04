@@ -47,7 +47,6 @@ public class SponserActivity extends AppCompatActivity {
                 partnersList.add(allSponsorsList.get(i));
         }
 
-        Log.d("sponsorSize", allSponsorsList.size() + "..");
         bindActivity();
         initRecyclerView();
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
@@ -88,7 +89,7 @@ public class SpeakerDetailActivity extends AppCompatActivity implements View.OnC
         aboutSpeakerTextView.setText(speakerModel.getShortInfo());
         aboutTextView.setText("About " + speakerModel.getSpeakerName());
         speakerTopic.setText(speakerModel.getTopic());
-        abstractTextView.setText(speakerModel.getAbstractt());
+        abstractTextView.setText(Html.fromHtml(speakerModel.getAbstractt()));
         speakerEmailAddress.setText(speakerModel.getEmail());
 
 

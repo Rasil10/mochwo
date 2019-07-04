@@ -344,7 +344,6 @@ public class RealmController {
         EventModel object = realm.where(EventModel.class)
                 .equalTo("id", eventModel.getId())
                 .findFirst();
-        Log.d("bookmarkStatus", object.isBookmarked() + "///");
         realm.beginTransaction();
         if (eventModel == null) {
 
@@ -352,7 +351,6 @@ public class RealmController {
         } else {
             object.setBookmarked(true);
         }
-        Log.d("bookmarkStatus", object.isBookmarked() + "///");
 
         realm.commitTransaction();
     }

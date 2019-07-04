@@ -287,14 +287,12 @@ public class ScheduleDetailActivity extends AppCompatActivity implements View.On
     }
 
     private void removeFromBookmark(String id) {
-        Log.d("bookmarkSize", bookmarkModels.size() + "-- before");
         for (int i = 0; i < bookmarkModels.size(); i++) {
             if (bookmarkModels.get(i).getId().equals(id)) {
                 bookmarkModels.remove(i);
             }
         }
 
-        Log.d("bookmarkSize", bookmarkModels.size() + "-- after");
         realmController.clearBookmarks();
         for (int i = 0; i < bookmarkModels.size(); i++) {
             realmController.addBookmark(bookmarkModels.get(i));

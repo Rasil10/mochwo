@@ -269,7 +269,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                         if ((nn.toLowerCase(Locale.getDefault()).contains(query.toLowerCase(Locale.getDefault())))) {
                             if (!filteredList.contains(value)) {
                                 filteredList.add(value);
-                                Log.d("checkcheck", nn + " /////" + query + "----" + value + " &&&&&" + filteredList.size());
 
                             }
                         }

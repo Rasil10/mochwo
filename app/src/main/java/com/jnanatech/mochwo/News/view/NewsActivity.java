@@ -31,7 +31,6 @@ public class NewsActivity extends AppCompatActivity {
         newsRecyclerView = (RecyclerView) findViewById(R.id.newsRecyclerView);
 
         news = realmController.getNews();
-        Log.d("newsCheck",news.size()+"");
         NewsAdapter newsAdapter = new NewsAdapter(this,realmController.getNews());
 
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));

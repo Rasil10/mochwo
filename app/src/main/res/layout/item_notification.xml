@@ -16,7 +16,7 @@
         android:padding="@dimen/mainMargin">
 
         <TextView
-            android:id="@+id/notificationAbout"
+            android:id="@+id/notificationTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunitobold"
@@ -24,7 +24,7 @@
             android:textColor="@color/colorPrimaryDark" />
 
         <TextView
-            android:id="@+id/notificationDescription"
+            android:id="@+id/notificationDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunitoregular"
@@ -32,11 +32,15 @@
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/textSizeHeading" />
 
-        <TextView
-            android:id="@+id/notificationDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nunitoregular"
-            android:text="2015-5-5" />
+        <!--<TextView-->
+            <!--android:id="@+id/notificationCategory"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:textColor="@color/colorWhite"-->
+            <!--android:fontFamily="@font/nunitoregular"-->
+            <!--android:paddingLeft="@dimen/smallMargin"-->
+            <!--android:paddingRight="@dimen/smallMargin"-->
+            <!--android:text="2015-5-5" />-->
     </LinearLayout>
 </androidx.cardview.widget.CardView>

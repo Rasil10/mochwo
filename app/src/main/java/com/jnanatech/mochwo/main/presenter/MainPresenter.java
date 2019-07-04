@@ -8,7 +8,9 @@ public interface MainPresenter {
     void setRemainingTime();
     void getSpeakers();
     void getSponsers();
+    void getNews();
     void getUpdates();
+    void checkNotificationSize();
 
 
 }

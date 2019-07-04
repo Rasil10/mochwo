@@ -89,7 +89,6 @@ public class ScheduleDetailActivity extends AppCompatActivity implements View.On
         if (bundle != null) {
             event.setId(bundle.getString(Constants.scheduleIDConstant));
             event.setStartTime(bundle.getString(Constants.scheduleStartTimeConstant));
-            event.setStartTime("16:24 pm");
             event.setEndTime(bundle.getString(Constants.scheduleEndTimeConstant));
             event.setChairPersonName(bundle.getString(Constants.scheduleChairPersonConstant));
             event.setChairPersonDetail(bundle.getString(Constants.scheduleChairPersonDetailConstant));
@@ -273,14 +272,9 @@ public class ScheduleDetailActivity extends AppCompatActivity implements View.On
         String[] splitForMins = splitByColon[1].split(" ");
         int minutesValue = Integer.parseInt(splitForMins[0]);
 
-
-        Log.d("dateCheck",hoursValue +"::"+ minutesValue);
-
-
-
         //create time
         Calendar startTime = Calendar.getInstance();
-        startTime.set(Calendar.HOUR_OF_DAY, hoursValue);
+        startTime.set(Calendar.HOUR_OF_DAY, hoursValue-1);
         startTime.set(Calendar.MINUTE, minutesValue);
         startTime.set(Calendar.SECOND, 0);
 

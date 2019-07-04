@@ -5,32 +5,32 @@ import android.content.SharedPreferences;
 
 import com.jnanatech.mochwo.utils.Constants;
 
-public class SpeakerSizeSharedPrefHelper {
+public class NotificationSizeSharedPrefHelper {
     Context context;
-    public static SpeakerSizeSharedPrefHelper sharedInstance;
+    public static NotificationSizeSharedPrefHelper sharedInstance;
     String TOKEN;
 
-    public static SpeakerSizeSharedPrefHelper getSharedInstance(Context context) {
+    public static NotificationSizeSharedPrefHelper getSharedInstance(Context context) {
 
         if (sharedInstance == null) {
-            sharedInstance = new SpeakerSizeSharedPrefHelper(context);
+            sharedInstance = new NotificationSizeSharedPrefHelper(context);
         }
         return sharedInstance;
     }
 
-    public SpeakerSizeSharedPrefHelper(Context context) {
+    public NotificationSizeSharedPrefHelper(Context context) {
         this.context = context;
     }
 
 
-    public void saveSpeakerNumber(Integer size) {
+    public void saveNotificationNumberNumber(Integer size) {
         SharedPreferences.Editor editor = context.getSharedPreferences(Constants.speakerSharedPrefConstant, context.MODE_PRIVATE).edit();
         editor.putInt(Constants.speakerSizeConstant, size);
         editor.commit();
     }
 
 
-    public int getSpeakerSize() {
+    public int getNotificationSize() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.speakerSharedPrefConstant, context.MODE_PRIVATE);
         Integer size = sharedPreferences.getInt(Constants.speakerSizeConstant, 0);
         return size;

@@ -1,12 +1,17 @@
 package com.jnanatech.mochwo.main.view;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,12 +25,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.jnanatech.mochwo.News.view.NewsActivity;
 import com.jnanatech.mochwo.R;
 import com.jnanatech.mochwo.aboutUs.view.AboutUsActivity;
 import com.jnanatech.mochwo.bookmark.view.BookmarkActivity;
@@ -33,7 +40,7 @@ import com.jnanatech.mochwo.contactUs.ContactUsActivity;
 import com.jnanatech.mochwo.main.model.Conference;
 import com.jnanatech.mochwo.main.presenter.MainImplementor;
 import com.jnanatech.mochwo.main.presenter.MainPresenter;
-import com.jnanatech.mochwo.material.view.MaterialsActivity;
+import com.jnanatech.mochwo.notification.model.NotificationModel;
 import com.jnanatech.mochwo.notification.view.NotificationActivity;
 import com.jnanatech.mochwo.schedule.view.ScheduleActivity;
 import com.jnanatech.mochwo.search.view.SearchActivity;
@@ -42,6 +49,7 @@ import com.jnanatech.mochwo.sponsers.view.SponserActivity;
 import com.jnanatech.mochwo.utils.AbstractSubmissionDialog;
 import com.jnanatech.mochwo.utils.Constants;
 import com.jnanatech.mochwo.utils.PastEventDialog;
+import com.jnanatech.mochwo.utils.sharedPreference.NotificationSizeSharedPrefHelper;
 import com.onesignal.OneSignal;
 import com.squareup.picasso.Picasso;
 
@@ -93,6 +101,19 @@ public class MainActivity extends AppCompatActivity
         mainPresenter.getSpeakers();
         mainPresenter.getUpdates();
         mainPresenter.getSponsers();
+        mainPresenter.getNews();
+        mainPresenter.checkNotificationSize();
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Do something after 20 seconds
+                mainPresenter.getUpdates();
+                mainPresenter.checkNotificationSize();
+                handler.postDelayed(this, 10000);
+            }
+        }, 10000);
 
 
     }
@@ -168,9 +189,9 @@ public class MainActivity extends AppCompatActivity
         abstractCardView.setOnClickListener(this);
         abstractCardView.setOnLongClickListener(this);
 
-        CardView searchCardView = (CardView) findViewById(R.id.searchCardView);
-        searchCardView.setOnClickListener(this);
-        searchCardView.setOnLongClickListener(this);
+        CardView newsCardView = (CardView) findViewById(R.id.newsCardView);
+        newsCardView.setOnClickListener(this);
+        newsCardView.setOnLongClickListener(this);
 
         CardView notificationCardView = (CardView) findViewById(R.id.notificationCardView);
         notificationCardView.setOnClickListener(this);
@@ -246,7 +267,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(sponserIntent);
                 break;
             case R.id.materialsCardView:
-                startActivity(new Intent(MainActivity.this, MaterialsActivity.class));
+                startActivity(new Intent(MainActivity.this, BookmarkActivity.class));
                 break;
             case R.id.aboutCardView:
                 startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
@@ -268,8 +289,8 @@ public class MainActivity extends AppCompatActivity
                 AbstractSubmissionDialog abstractSubmissionDialog = new AbstractSubmissionDialog();
                 abstractSubmissionDialog.showDialog(this, " Abstract ");
                 break;
-            case R.id.searchCardView:
-                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+            case R.id.newsCardView:
+                startActivity(new Intent(MainActivity.this, NewsActivity.class));
                 break;
             case R.id.notificationCardView:
                 Intent notificationIntent = new Intent(MainActivity.this, NotificationActivity.class);
@@ -307,13 +328,40 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void getSpeakerChangeSize(int changeInSize, int originalSize) {
-        if (changeInSize == 0) {
+    public void getNotificationChangeSize(int changeInSize,int newSize, boolean changed, NotificationModel notification) {
+        if (changeInSize<1) {
             invalidateOptionsMenu();
             changeNotificationIcon = false;
+
         } else {
             invalidateOptionsMenu();
             changeNotificationIcon = true;
+            try {
+                NotificationSizeSharedPrefHelper notificationSizeSharedPrefHelper = new NotificationSizeSharedPrefHelper(this);
+                notificationSizeSharedPrefHelper.saveNotificationNumberNumber(newSize);
+
+
+                Intent intent = new Intent(this, NotificationActivity.class);
+                PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                NotificationCompat.Builder b = new NotificationCompat.Builder(this);
+
+                b.setAutoCancel(true)
+                        .setDefaults(Notification.DEFAULT_ALL)
+                        .setWhen(System.currentTimeMillis())
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle(notification.getTitle())
+                        .setContentText(notification.getDetail())
+                        .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND)
+                        .setContentIntent(contentIntent);
+
+                NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(1, b.build());
+                Toast.makeText(this, "New Notification", Toast.LENGTH_SHORT).show();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -403,7 +451,7 @@ public class MainActivity extends AppCompatActivity
             return true;
         } else if (id == R.id.action_notification) {
             Intent notificationIntent = new Intent(MainActivity.this, NotificationActivity.class);
-            startActivityForResult(notificationIntent, Constants.NotificationActivityConstant);
+            startActivity(notificationIntent);
             return true;
         } else if (id == android.R.id.home) {
             drawer.openDrawer(GravityCompat.START);
@@ -411,6 +459,7 @@ public class MainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -420,9 +469,11 @@ public class MainActivity extends AppCompatActivity
             PastEventDialog pastEventDialog = new PastEventDialog();
             pastEventDialog.showDialog(MainActivity.this, " Past Events ");
 
-        } else if (id == R.id.nav_bookmark) {
-            startActivity(new Intent(MainActivity.this, BookmarkActivity.class));
-        } else if (id == R.id.nav_about_us) {
+        }
+//        else if (id == R.id.nav_bookmark) {
+//            startActivity(new Intent(MainActivity.this, NewsActivity.class));
+//        }
+        else if (id == R.id.nav_about_us) {
             startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
 
         } else if (id == R.id.nav_contact_us) {
@@ -469,8 +520,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.abstractCardView:
                 Toast.makeText(this, "View Abstract", Toast.LENGTH_SHORT).show();
                 return true;
-            case R.id.searchCardView:
-                Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
+            case R.id.newsCardView:
+                Toast.makeText(this, "View News", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.notificationCardView:
                 Toast.makeText(this, "View Notification", Toast.LENGTH_SHORT).show();

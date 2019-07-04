@@ -2,7 +2,6 @@ package com.jnanatech.mochwo.notification.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,14 +12,14 @@ import com.jnanatech.mochwo.R;
 import com.jnanatech.mochwo.speakers.model.SpeakerModel;
 import com.jnanatech.mochwo.utils.Constants;
 import com.jnanatech.mochwo.utils.database.RealmController;
-import com.jnanatech.mochwo.utils.sharedPreference.SpeakerSizeSharedPrefHelper;
+import com.jnanatech.mochwo.utils.sharedPreference.NotificationSizeSharedPrefHelper;
 
 import java.util.ArrayList;
 
 public class NotificationActivity extends AppCompatActivity {
 
     RealmController realmController;
-    SpeakerSizeSharedPrefHelper speakerSizeSharedPrefHelper;
+    NotificationSizeSharedPrefHelper notificationSizeSharedPrefHelper;
 
     ArrayList<SpeakerModel> speakerList = new ArrayList<>();
     RecyclerView notificationRecyclerView;
@@ -32,8 +31,8 @@ public class NotificationActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         realmController = RealmController.with(this);
-        speakerSizeSharedPrefHelper = new SpeakerSizeSharedPrefHelper(this);
-        speakerSizeSharedPrefHelper.saveSpeakerNumber(realmController.getSpeakerListSize());
+        notificationSizeSharedPrefHelper = new NotificationSizeSharedPrefHelper(this);
+        notificationSizeSharedPrefHelper.saveNotificationNumberNumber(realmController.getAllNotification().size());
 
         notificationRecyclerView = (RecyclerView) findViewById(R.id.notificationRecyclerView);
         notificationRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -56,9 +55,6 @@ public class NotificationActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent data = new Intent();
-        data.putExtra(Constants.notificationActivityDataConstanst, true);
-        setResult(RESULT_OK, data);
-        finish();
+        super.onBackPressed();
     }
 }

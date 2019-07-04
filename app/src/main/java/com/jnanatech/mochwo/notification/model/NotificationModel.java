@@ -5,8 +5,7 @@ import io.realm.RealmObject;
 public class NotificationModel extends RealmObject {
     private String title;
     private String detail;
-    private String link;
-    private String image;
+    private  String category;
 
     public String getTitle() {
         return title;
@@ -24,19 +23,11 @@ public class NotificationModel extends RealmObject {
         this.detail = detail;
     }
 
-    public String getLink() {
-        return link;
+    public String getCategory() {
+        return category;
     }
 
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

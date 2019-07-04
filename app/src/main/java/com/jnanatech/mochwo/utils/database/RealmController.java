@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 
+import com.jnanatech.mochwo.News.model.NewsModel;
 import com.jnanatech.mochwo.bookmark.model.BookmarkModel;
 import com.jnanatech.mochwo.main.model.Conference;
 import com.jnanatech.mochwo.notification.model.NotificationModel;
@@ -416,6 +417,39 @@ public class RealmController {
     public void clearConference() {
         realm.beginTransaction();
         realm.delete(Conference.class);
+//        realm.delete(CompanyNameModel.class);
+        realm.commitTransaction();
+    }
+
+    //news database actions
+    public void addAllNews(ArrayList<NewsModel> allNews) {
+
+        realm.beginTransaction();
+        realm.copyToRealm(allNews);
+        realm.commitTransaction();
+
+    }
+
+    public ArrayList<NewsModel> getNews() {
+        ArrayList<NewsModel> list = new ArrayList<>();
+        Realm realm = null;
+        try {
+            realm = Realm.getDefaultInstance();
+            RealmResults<NewsModel> results = realm
+                    .where(NewsModel.class)
+                    .findAll();
+            list.addAll(realm.copyFromRealm(results));
+        } finally {
+            if (realm != null) {
+                realm.close();
+            }
+        }
+        return list;
+    }
+
+    public void clearNews() {
+        realm.beginTransaction();
+        realm.delete(NewsModel.class);
 //        realm.delete(CompanyNameModel.class);
         realm.commitTransaction();
     }

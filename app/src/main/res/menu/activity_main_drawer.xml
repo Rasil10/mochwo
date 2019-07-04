@@ -8,10 +8,10 @@
         android:icon="@drawable/ic_event_note_black_24dp"
         android:title="Past Events" />
 
-    <item
-        android:id="@+id/nav_bookmark"
-        android:icon="@drawable/ic_bookmark_true"
-        android:title="Bookmarks" />
+    <!--<item-->
+        <!--android:id="@+id/nav_bookmark"-->
+        <!--android:icon="@drawable/ic_materials"-->
+        <!--android:title="Materials" />-->
 
 
     <item

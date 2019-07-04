@@ -13,6 +13,7 @@ public class Constants {
     public static final String URLSchedule1 = "https://conference2019.kias.org.np/wp-json/wp/v2/pages/4493";
     public static final String URLSchedule2 = "https://conference2019.kias.org.np/wp-json/wp/v2/pages/4495";
     public static final String URLUpdates = "https://conference2019.kias.org.np/wp-json/wp/v2/pages/4555";
+    public static final String URLNEWS = "https://conference2019.kias.org.np/wp-json/wp/v2/posts";
     public static final String speakerDatabaseName = "speakers.realm";
     public static final String speakerSizeConstant = "speakerSizeConstant";
     public static final String notificationCount = "notificationCount";

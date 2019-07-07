@@ -1,22 +1,16 @@
 package com.jnanatech.mochwo.schedule.view;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,15 +19,13 @@ import com.jnanatech.mochwo.R;
 import com.jnanatech.mochwo.schedule.model.EventModel;
 import com.jnanatech.mochwo.schedule.presenter.DayOneImplementor;
 import com.jnanatech.mochwo.schedule.presenter.DayOnePresenter;
-import com.jnanatech.mochwo.speakers.model.SpeakerModel;
-import com.jnanatech.mochwo.utils.database.RealmController;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DayTwoFragment extends Fragment implements DayOneView{
+public class DayTwoFragment extends Fragment implements DayOneView {
     DayOnePresenter dayOnePresenter;
 
 
@@ -47,6 +39,7 @@ public class DayTwoFragment extends Fragment implements DayOneView{
     public DayTwoFragment() {
         // Required empty public constructor
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,16 +82,18 @@ public class DayTwoFragment extends Fragment implements DayOneView{
 
         return rootView;
     }
+
     private void performSearch(String query) {
         ArrayList<EventModel> newModels = new ArrayList<>();
         for (int i = 0; i < dayTwoEvents.size(); i++) {
             EventModel model = dayTwoEvents.get(i);
 
 
-
             if (
                     model.getEventSpeaker().toLowerCase().contains(query) ||
                             model.getEventTitle().toLowerCase().contains(query) ||
+                            model.getSessionTitle().toLowerCase().contains(query) ||
+                            model.getChairPersonName().toLowerCase().contains(query) ||
                             model.getKeywords().toLowerCase().contains(query)
             ) {
                 newModels.add(model);
@@ -116,19 +111,17 @@ public class DayTwoFragment extends Fragment implements DayOneView{
 
         }
     }
+
     @Override
     public void onResume() {
         super.onResume();
     }
 
 
-
-
     @Override
     public void getDayOneEvents(ArrayList<EventModel> dayOneEvents) {
         this.dayTwoEvents = dayOneEvents;
     }
-
 
 
 }

@@ -106,7 +106,7 @@ public class DayOneFragment extends Fragment implements DayOneView {
             if (
                     model.getEventSpeaker().toLowerCase().contains(query) ||
                     model.getEventTitle().toLowerCase().contains(query) ||
-                    model.getScheduleName().toLowerCase().contains(query) ||
+                    model.getSessionTitle().toLowerCase().contains(query) ||
                     model.getChairPersonName().toLowerCase().contains(query) ||
                     model.getKeywords().toLowerCase().contains(query)
             ) {

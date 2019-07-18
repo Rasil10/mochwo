@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,10 +73,7 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawer;
     private NestedScrollView mainView;
 
-    private ImageView conferenceEventImage;
-    private TextView conferenceTitle;
     private TextView conferenceDate;
-    private TextView conferenceQuote;
 
     private TextView timerTextView;
     private CountDownTimer mCountDownTimer;
@@ -161,47 +159,42 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        conferenceEventImage = (ImageView) findViewById(R.id.conferenceEventImageView);
-        conferenceTitle = (TextView) findViewById(R.id.conferenceTitle);
-        conferenceQuote = (TextView) findViewById(R.id.conferenceQuote);
         conferenceDate = (TextView) findViewById(R.id.conferenceDate);
 
-        timerTextView = (TextView) findViewById(R.id.timerTextView);
 
-
-        CardView scheduleCardView = (CardView) findViewById(R.id.scheduleCardView);
+        LinearLayout scheduleCardView = (LinearLayout) findViewById(R.id.scheduleCardView);
         scheduleCardView.setOnClickListener(this);
         scheduleCardView.setOnLongClickListener(this);
 
-        CardView speakersCardView = (CardView) findViewById(R.id.speakersCardView);
+        LinearLayout speakersCardView = (LinearLayout) findViewById(R.id.speakersCardView);
         speakersCardView.setOnClickListener(this);
         speakersCardView.setOnLongClickListener(this);
 
-        CardView sponsersCardView = (CardView) findViewById(R.id.sponsersCardView);
+        LinearLayout sponsersCardView = (LinearLayout) findViewById(R.id.sponsersCardView);
         sponsersCardView.setOnClickListener(this);
         sponsersCardView.setOnLongClickListener(this);
 
-        CardView materialsCardView = (CardView) findViewById(R.id.materialsCardView);
-        materialsCardView.setOnClickListener(this);
-        materialsCardView.setOnLongClickListener(this);
+        LinearLayout bookmarksCardView = (LinearLayout) findViewById(R.id.bookmarksCardView);
+        bookmarksCardView.setOnClickListener(this);
+        bookmarksCardView.setOnLongClickListener(this);
 
-        CardView aboutCardView = (CardView) findViewById(R.id.aboutCardView);
+        LinearLayout aboutCardView = (LinearLayout) findViewById(R.id.aboutCardView);
         aboutCardView.setOnClickListener(this);
         aboutCardView.setOnLongClickListener(this);
 
-        CardView mapCardView = (CardView) findViewById(R.id.mapCardView);
+        LinearLayout mapCardView = (LinearLayout) findViewById(R.id.mapCardView);
         mapCardView.setOnClickListener(this);
         mapCardView.setOnLongClickListener(this);
 
-        CardView abstractCardView = (CardView) findViewById(R.id.abstractCardView);
+        LinearLayout abstractCardView = (LinearLayout) findViewById(R.id.abstractCardView);
         abstractCardView.setOnClickListener(this);
         abstractCardView.setOnLongClickListener(this);
 
-        CardView newsCardView = (CardView) findViewById(R.id.newsCardView);
+        LinearLayout newsCardView = (LinearLayout) findViewById(R.id.newsCardView);
         newsCardView.setOnClickListener(this);
         newsCardView.setOnLongClickListener(this);
 
-        CardView notificationCardView = (CardView) findViewById(R.id.notificationCardView);
+        LinearLayout notificationCardView = (LinearLayout) findViewById(R.id.notificationCardView);
         notificationCardView.setOnClickListener(this);
         notificationCardView.setOnLongClickListener(this);
 
@@ -209,14 +202,7 @@ public class MainActivity extends AppCompatActivity
 
     private void setUpEvent() throws ParseException {
 
-        Picasso.get()
-                .load(conference.getImageUrl())
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.drawable.ic_terrain_black_24dp)
-                .into(conferenceEventImage);
 
-        conferenceTitle.setText(conference.getTitle());
-        conferenceQuote.setText(conference.getQuote());
 
         setUpDate();
     }
@@ -274,7 +260,7 @@ public class MainActivity extends AppCompatActivity
                 Intent sponserIntent = new Intent(MainActivity.this, SponserActivity.class);
                 startActivity(sponserIntent);
                 break;
-            case R.id.materialsCardView:
+            case R.id.bookmarksCardView:
                 startActivity(new Intent(MainActivity.this, BookmarkActivity.class));
                 break;
             case R.id.aboutCardView:
@@ -328,11 +314,11 @@ public class MainActivity extends AppCompatActivity
     public void getRemainingTime(long remainingTime) {
         this.remainingTime = remainingTime;
 
-        try {
-            setUpTimer();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            setUpTimer();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
@@ -555,10 +541,11 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "View Speakers", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.sponsersCardView:
-                Toast.makeText(this, "View Sponsers", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "View Our Collaborators" +
+                        "", Toast.LENGTH_SHORT).show();
                 return true;
-            case R.id.materialsCardView:
-                Toast.makeText(this, "View Materials", Toast.LENGTH_SHORT).show();
+            case R.id.bookmarksCardView:
+                Toast.makeText(this, "View Bookmarks", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.aboutCardView:
                 Toast.makeText(this, "View About", Toast.LENGTH_SHORT).show();

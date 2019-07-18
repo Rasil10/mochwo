@@ -26,6 +26,7 @@ public class PastEventDialog {
 
         Button mochwo16 = (Button) dialog.findViewById(R.id.mochwo16);
         Button mochwo17 = (Button) dialog.findViewById(R.id.mochwo17);
+        Button mochwo18 = (Button) dialog.findViewById(R.id.mochwo18);
 
 
         mochwo16.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +44,16 @@ public class PastEventDialog {
             public void onClick(View v) {
                 Intent webIntent = new Intent(Intent.ACTION_VIEW);
                 webIntent.setData(Uri.parse("http://mochwo17.kias.org.np/"));
+                context.startActivity(webIntent);
+                dialog.dismiss();
+            }
+        });
+
+        mochwo18.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW);
+                webIntent.setData(Uri.parse("http://mochwo18.kias.org.np/"));
                 context.startActivity(webIntent);
                 dialog.dismiss();
             }

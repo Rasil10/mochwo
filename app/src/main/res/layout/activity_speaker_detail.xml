@@ -15,9 +15,8 @@
             android:id="@+id/backgroundImage"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="#8C000000"
-            android:scaleType="fitXY"
-            android:src="@drawable/speaker_background" />
+            android:background="#FF0C1E20"
+            android:scaleType="fitXY" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,8 +24,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/speakerImageView"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="32dp"
                 app:civ_border_color="@color/colorPrimary"
@@ -86,7 +85,7 @@
                     android:layout_marginLeft="@dimen/mainMargin"
                     android:layout_toRightOf="@+id/view1"
                     android:fontFamily="@font/nunitoregular"
-                    android:textStyle="italic" />
+                    android:textStyle="italic|bold" />
 
                 <View
                     android:id="@+id/view1"
@@ -200,7 +199,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/mainMargin"
-                app:chip_background="@color/colorPrimary"
+                app:chip_background="@color/colorChip"
                 app:chip_background_selected="@color/colorPrimaryDark"
                 app:chip_corner_radius="@dimen/mainMargin"
                 app:chip_line_spacing="@dimen/mainMargin"
@@ -208,49 +207,49 @@
                 app:chip_side_padding="@dimen/mainMargin"
                 />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/mainMargin"
-                app:cardElevation="@dimen/mainMargin">
+            <!--<androidx.cardview.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="@dimen/mainMargin"-->
+                <!--app:cardElevation="@dimen/mainMargin">-->
 
-                <RelativeLayout
-                    android:id="@+id/emailRL"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    android:orientation="vertical"
-                    android:padding="@dimen/fab_margin">
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/emailRL"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@color/colorPrimary"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:padding="@dimen/fab_margin">-->
 
 
-                    <TextView
-                        android:id="@+id/textView1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunitoregular"
-                        android:text="Email"
-                        android:textColor="@color/colorBackground" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/textView1"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:fontFamily="@font/nunitoregular"-->
+                        <!--android:text="Email"-->
+                        <!--android:textColor="@color/colorBackground" />-->
 
-                    <TextView
-                        android:id="@+id/speakerEmailAddress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/textView1"
-                        android:layout_marginBottom="@dimen/smallMargin"
-                        android:fontFamily="@font/nunitoregular"
-                        android:text="9849775852"
-                        android:textColor="@color/colorWhite" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/speakerEmailAddress"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@+id/textView1"-->
+                        <!--android:layout_marginBottom="@dimen/smallMargin"-->
+                        <!--android:fontFamily="@font/nunitoregular"-->
+                        <!--android:text="9849775852"-->
+                        <!--android:textColor="@color/colorWhite" />-->
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_email_black_24dp" />
+                    <!--<ImageView-->
+                        <!--android:layout_width="24dp"-->
+                        <!--android:layout_height="24dp"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:src="@drawable/ic_email_black_24dp" />-->
 
-                </RelativeLayout>
+                <!--</RelativeLayout>-->
 
-            </androidx.cardview.widget.CardView>
+            <!--</androidx.cardview.widget.CardView>-->
 
 
 

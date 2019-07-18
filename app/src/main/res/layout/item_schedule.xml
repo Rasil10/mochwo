@@ -92,6 +92,7 @@
                         android:layout_marginBottom="@dimen/mainMargin"
                         android:fontFamily="@font/nunitobold"
                         android:text="Topic of Event"
+                        android:maxLines="1"
                         android:textColor="@color/colorNormal"
                         android:textSize="@dimen/textSizeNormal" />
 
@@ -101,8 +102,9 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunitobold"
                         android:text="Spaker name"
+                        android:maxLines="1"
                         android:textAllCaps="true"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorNormal"
                         android:textSize="@dimen/textSizeExtraSmall" />
                 </LinearLayout>
 

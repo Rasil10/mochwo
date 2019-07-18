@@ -60,6 +60,18 @@
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/textSizeHeading" />
 
+        <Button
+            android:id="@+id/mochwo18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mochwo17"
+            android:layout_margin="@dimen/mainMargin"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/nunitobold"
+            android:text="MOCHWO 18"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/textSizeHeading" />
+
     </RelativeLayout>
 
 

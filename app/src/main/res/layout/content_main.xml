@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,585 +12,591 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBackground"
+        android:layout_height="fill_parent"
+        android:background="@drawable/mochwo_logo_mobile"
         android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/conferenceEventImageView"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/mainPageImageSize"
-                android:scaleType="fitXY" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/mainPageImageSize"
-                android:background="#8C000000" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/conferenceTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/mainMargin"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/nunitosemibold"
-                    android:maxLines="2"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/textSizeHeading" />
-
-                <TextView
-                    android:id="@+id/conferenceQuote"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunitoregular"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/textSizeNormal" />
-
-                <TextView
-                    android:id="@+id/conferenceDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/mainMargin"
-                    android:fontFamily="@font/nunitoregular"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/textSizeNormal" />
-
-                <TextView
-                    android:id="@+id/timerTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunitobold"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/textSizeHeading" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:background="@color/colorBackground"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:layout_height="match_parent"
+            android:background="#ccffffff"
+            android:orientation="vertical">
 
-            <!--ScheduleModel-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/scheduleCardView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="@dimen/mainMargin"
-                app:cardBackgroundColor="@color/colorGreen"
-                app:cardCornerRadius="@dimen/mainMargin">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="#ffffff"
+                android:orientation="horizontal"
+                android:weightSum="10">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:padding="@dimen/mainMargin">
+                    android:layout_weight="3"
+                    android:src="@drawable/mochow_logo" />
 
-                    <ImageView
-                        android:id="@+id/scheduleIV"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_event_note_black_24dp"
-                        android:tint="@color/colorGreenDark" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:src="@drawable/mochwo_text" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunitobold"
+                android:text="4th International Conference"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/conferenceDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunitobold"
+                android:text="18 - 19 October 2019 | Kathmandu, Nepal"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSizeHeading" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:background="@android:color/transparent"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <!--ScheduleModel-->
+                <LinearLayout
+                    android:id="@+id/scheduleCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mainMargin"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/style_circular_backgroun"
+                        android:gravity="center"
+                        android:padding="@dimen/fab_margin">
+
+                        <ImageView
+                            android:id="@+id/scheduleIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_event_note_black_24dp"
+                            android:tint="@color/colorWhite" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/scheduleIV"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/smallMargin"
                         android:fontFamily="@font/nunitobold"
                         android:text="Schedules"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textSizeSmall"
                         android:textStyle="bold" />
 
 
-                </RelativeLayout>
+                </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+                <!--Speakers-->
+                <LinearLayout
+                    android:id="@+id/speakersCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mainMargin"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <!--Speakers-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/speakersCardView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="@dimen/mainMargin"
-                app:cardBackgroundColor="@color/colorBlue"
-                app:cardCornerRadius="@dimen/mainMargin">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/mainMargin">
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/style_circular_backgroun"
+                        android:gravity="center"
+                        android:padding="@dimen/fab_margin">
 
-                    <ImageView
-                        android:id="@+id/speakerIV"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_speaker"
-                        android:tint="@color/colorBlueDark" />
+                        <ImageView
+                            android:id="@+id/speakerIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_speaker"
+                            android:tint="@color/colorWhite" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/speakerIV"
+                        android:layout_below="@+id/scheduleIV"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/smallMargin"
                         android:fontFamily="@font/nunitobold"
                         android:text="Speakers"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textSizeSmall"
                         android:textStyle="bold" />
 
 
-                </RelativeLayout>
+                </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+                <!--Sponsers-->
+                <LinearLayout
+                    android:id="@+id/sponsersCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mainMargin"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <!--Sponsers-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/sponsersCardView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="@dimen/mainMargin"
-                app:cardBackgroundColor="@color/colorOrange"
-                app:cardCornerRadius="@dimen/mainMargin">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/mainMargin">
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/style_circular_backgroun"
+                        android:gravity="center"
+                        android:padding="@dimen/fab_margin">
 
-                    <ImageView
-                        android:id="@+id/supportersIV"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_sponsers"
-                        android:tint="@color/colorOrangeDark" />
+                        <ImageView
+                            android:id="@+id/sponsersIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_sponsers"
+                            android:tint="@color/colorWhite" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/supportersIV"
-                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/smallMargin"
                         android:fontFamily="@font/nunitobold"
                         android:text="Collaborators"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/textSizeExtraSmall"
-                        android:textStyle="bold" />
-
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorBackground"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <!--Materials And Handsouts-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/materialsCardView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="@dimen/mainMargin"
-                app:cardBackgroundColor="@color/colorPurple"
-                app:cardCornerRadius="@dimen/mainMargin">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/mainMargin">
-
-                    <ImageView
-                        android:id="@+id/materialIV"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_bookmark_true"
-                        android:tint="@color/colorPurpleDark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/materialIV"
-                        android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="Bookmarks"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textSizeSmall"
                         android:textStyle="bold" />
 
 
-                </RelativeLayout>
+                </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
-
-            <!--About-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/aboutCardView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="@dimen/mainMargin"
-                app:cardBackgroundColor="@color/colorRed"
-                app:cardCornerRadius="@dimen/mainMargin">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/mainMargin">
-
-                    <ImageView
-                        android:id="@+id/aboutIV"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_about_us"
-                        android:tint="@color/colorRedDark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/aboutIV"
-                        android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="About"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
-
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!--Map-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/mapCardView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="@dimen/mainMargin"
-                app:cardBackgroundColor="@color/colorSkyBlue"
-                app:cardCornerRadius="@dimen/mainMargin">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/mainMargin">
-
-                    <ImageView
-                        android:id="@+id/mapIV"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_location_on_black_24dp"
-                        android:tint="@color/colorSkyBlueDark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/mapIV"
-                        android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="Map"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
-
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorBackground"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <!--Abstract-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/abstractCardView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="@dimen/mainMargin"
-                app:cardBackgroundColor="@color/colorOrange"
-                app:cardCornerRadius="@dimen/mainMargin">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/mainMargin">
-
-                    <ImageView
-                        android:id="@+id/abstractIV"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_abstract"
-                        android:tint="@color/colorOrangeDark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/abstractIV"
-                        android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="Abstract"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
-
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!--Search-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/newsCardView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="@dimen/mainMargin"
-                app:cardBackgroundColor="@color/colorGreen"
-                app:cardCornerRadius="@dimen/mainMargin">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/mainMargin">
-
-                    <ImageView
-                        android:id="@+id/searchIV"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_news"
-                        android:tint="@color/colorGreenDark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/searchIV"
-                        android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="News"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
-
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!--notification-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/notificationCardView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="@dimen/mainMargin"
-                app:cardBackgroundColor="@color/colorBlue"
-                app:cardCornerRadius="@dimen/mainMargin">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/mainMargin">
-
-                    <ImageView
-                        android:id="@+id/notificationIV"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_os_notification_fallback_white_24dp"
-                        android:tint="@color/colorBlueDark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/notificationIV"
-                        android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="Updates"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
-
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/mainMargin"
-            android:paddingRight="@dimen/mainMargin">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_organizer"
-                android:tint="@color/colorPrimary" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunitobold"
-                android:padding="@dimen/mainMargin"
-                android:text="Hosted By"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/textSizeHeading" />
-        </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/mainMargin"
-            android:layout_marginTop="@dimen/mainMargin"
-            android:layout_marginRight="@dimen/mainMargin"
-            android:layout_marginBottom="@dimen/fab_margin"
-            app:cardCornerRadius="@dimen/fab_margin"
-            app:cardElevation="@dimen/mainMargin">
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:background="@android:color/transparent"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <!--BOOkmarks-->
+                <LinearLayout
+                    android:id="@+id/bookmarksCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mainMargin"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/style_circular_backgroun"
+                        android:gravity="center"
+                        android:padding="@dimen/fab_margin">
+
+                        <ImageView
+                            android:id="@+id/bookmarksIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_bookmark_true"
+                            android:tint="@color/colorWhite" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/scheduleIV"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/smallMargin"
+                        android:fontFamily="@font/nunitobold"
+                        android:text="Bookmarks"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSizeSmall"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <!--About-->
+                <LinearLayout
+                    android:id="@+id/aboutCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mainMargin"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/style_circular_backgroun"
+                        android:gravity="center"
+                        android:padding="@dimen/fab_margin">
+
+                        <ImageView
+                            android:id="@+id/aboutIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_about_us"
+                            android:tint="@color/colorWhite" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/scheduleIV"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/smallMargin"
+                        android:fontFamily="@font/nunitobold"
+                        android:text="About"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSizeSmall"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <!--Map-->
+                <LinearLayout
+                    android:id="@+id/mapCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mainMargin"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/style_circular_backgroun"
+                        android:gravity="center"
+                        android:padding="@dimen/fab_margin">
+
+                        <ImageView
+                            android:id="@+id/mapIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_location_on_black_24dp"
+                            android:tint="@color/colorWhite" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/scheduleIV"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/smallMargin"
+                        android:fontFamily="@font/nunitobold"
+                        android:text="Map"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSizeSmall"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <!--Abstract-->
+                <LinearLayout
+                    android:id="@+id/abstractCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mainMargin"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/style_circular_backgroun"
+                        android:gravity="center"
+                        android:padding="@dimen/fab_margin">
+
+                        <ImageView
+                            android:id="@+id/abstractIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_abstract"
+                            android:tint="@color/colorWhite" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/scheduleIV"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/smallMargin"
+                        android:fontFamily="@font/nunitobold"
+                        android:text="Abstract"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSizeSmall"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <!--News-->
+                <LinearLayout
+                    android:id="@+id/newsCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mainMargin"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/style_circular_backgroun"
+                        android:gravity="center"
+                        android:padding="@dimen/fab_margin">
+
+                        <ImageView
+                            android:id="@+id/newsIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_news"
+                            android:tint="@color/colorWhite" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/scheduleIV"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/smallMargin"
+                        android:fontFamily="@font/nunitobold"
+                        android:text="News"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSizeSmall"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <!--notification-->
+                <LinearLayout
+                    android:id="@+id/notificationCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mainMargin"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/style_circular_backgroun"
+                        android:gravity="center"
+                        android:padding="@dimen/fab_margin">
+
+                        <ImageView
+                            android:id="@+id/notificationIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_os_notification_fallback_white_24dp"
+                            android:tint="@color/colorWhite" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/smallMargin"
+                        android:fontFamily="@font/nunitobold"
+                        android:text="Updates"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSizeSmall"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:orientation="horizontal"
                 android:paddingLeft="@dimen/mainMargin"
                 android:paddingRight="@dimen/mainMargin">
 
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_organizer"
+                    android:tint="@color/colorPrimary" />
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/smallMargin"
-                    android:layout_marginTop="@dimen/smallMargin"
                     android:fontFamily="@font/nunitobold"
-                    android:text="Kathmandu Institute of Applied Sciences"
-                    android:textColor="@color/colorBlack"
+                    android:padding="@dimen/mainMargin"
+                    android:text="Hosted By"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="@dimen/textSizeHeading" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginRight="@dimen/mainMargin"
-                        android:src="@drawable/ic_location_on_black_24dp"
-                        android:tint="@color/colorPrimaryDark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunitoregular"
-                        android:text="Lalitpur Metropolitan City-18, Bagdol, Lalitpur (near overhead bridge)"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeHeading" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/smallMargin"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginRight="@dimen/mainMargin"
-                        android:src="@drawable/ic_phone_black_24dp"
-                        android:tint="@color/colorPrimaryDark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunitoregular"
-                        android:text="01–6924204"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeHeading" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/smallMargin"
-                    android:layout_marginBottom="@dimen/fab_margin"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginRight="@dimen/mainMargin"
-                        android:src="@drawable/ic_email_black_24dp"
-                        android:tint="@color/colorPrimaryDark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunitoregular"
-                        android:text="@string/kiasEmail"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeHeading" />
-
-                </LinearLayout>
-
-
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/mainMargin"
+                android:layout_marginTop="@dimen/mainMargin"
+                android:layout_marginRight="@dimen/mainMargin"
+                android:layout_marginBottom="@dimen/fab_margin"
+                app:cardCornerRadius="@dimen/fab_margin"
+                app:cardElevation="@dimen/mainMargin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/mainMargin"
+                    android:paddingRight="@dimen/mainMargin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/smallMargin"
+                        android:layout_marginTop="@dimen/smallMargin"
+                        android:fontFamily="@font/nunitobold"
+                        android:text="Kathmandu Institute of Applied Sciences"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSizeHeading" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="@dimen/mainMargin"
+                            android:src="@drawable/ic_location_on_black_24dp"
+                            android:tint="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitoregular"
+                            android:text="Lalitpur Metropolitan City-18, Bagdol, Lalitpur (near overhead bridge)"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/textSizeHeading" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/smallMargin"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="@dimen/mainMargin"
+                            android:src="@drawable/ic_phone_black_24dp"
+                            android:tint="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitoregular"
+                            android:text="01–6924204"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/textSizeHeading" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/smallMargin"
+                        android:layout_marginBottom="@dimen/fab_margin"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="@dimen/mainMargin"
+                            android:src="@drawable/ic_email_black_24dp"
+                            android:tint="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitoregular"
+                            android:text="@string/kiasEmail"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/textSizeHeading" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
     </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
+</ScrollView>

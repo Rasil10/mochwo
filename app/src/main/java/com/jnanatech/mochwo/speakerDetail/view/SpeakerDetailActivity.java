@@ -45,9 +45,7 @@ public class SpeakerDetailActivity extends AppCompatActivity implements View.OnC
     TextView aboutSpeakerTextView;
     TextView aboutTextView;
     TextView speakerTopic;
-    TextView speakerEmailAddress;
 
-    RelativeLayout emailRL;
     ChipView keywordChipGroup;
     RealmController realmController;
 
@@ -90,7 +88,6 @@ public class SpeakerDetailActivity extends AppCompatActivity implements View.OnC
         aboutTextView.setText("About " + speakerModel.getSpeakerName());
         speakerTopic.setText(speakerModel.getTopic());
         abstractTextView.setText(Html.fromHtml(speakerModel.getAbstractt()));
-        speakerEmailAddress.setText(speakerModel.getEmail());
 
 
 
@@ -115,12 +112,10 @@ public class SpeakerDetailActivity extends AppCompatActivity implements View.OnC
         speakerTopic = (TextView) findViewById(R.id.speakerTopicTextView);
         aboutTextView = (TextView) findViewById(R.id.aboutTextView);
         aboutSpeakerTextView = (TextView) findViewById(R.id.aboutSpeakerTextView);
-        speakerEmailAddress = (TextView) findViewById(R.id.speakerEmailAddress);
 
         keywordChipGroup = (ChipView) findViewById(R.id.keywordChipGroup);
 
-        emailRL = (RelativeLayout) findViewById(R.id.emailRL);
-        emailRL.setOnClickListener(this);
+
 
 
     }

@@ -20,6 +20,7 @@ import com.jnanatech.mochwo.R;
 import com.jnanatech.mochwo.aboutUs.model.MemberModel;
 import com.jnanatech.mochwo.aboutUs.presenter.AboutUsImplementor;
 import com.jnanatech.mochwo.aboutUs.presenter.AboutUsPresenter;
+import com.jnanatech.mochwo.utils.database.RealmController;
 
 import java.util.ArrayList;
 
@@ -31,8 +32,6 @@ public class AboutUsActivity extends AppCompatActivity  implements AboutUsView, 
     private ExpandableWeightLayout scientificCommitteeExpandableLayout;
     private Button organizingCommiteeButton;
     private Button scientificCommiteeButton;
-    private AppBarLayout mAppBarLayout;
-    private TextView mTitleTextView;
     private Button backButton;
 
     AboutUsPresenter aboutUsPresenter;
@@ -40,6 +39,9 @@ public class AboutUsActivity extends AppCompatActivity  implements AboutUsView, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setElevation(0);
 
         bindActivity();
 
@@ -51,20 +53,7 @@ public class AboutUsActivity extends AppCompatActivity  implements AboutUsView, 
 
     private void bindActivity() {
 
-        mAppBarLayout = (AppBarLayout)findViewById(R.id.app_bar);
 
-        mTitleTextView = (TextView)findViewById(R.id.mTitleTextView);
-        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-
-                mTitleTextView.setAlpha(Math.abs(verticalOffset / (float)
-                        appBarLayout.getTotalScrollRange()));
-            }
-        });
-
-        backButton = (Button) findViewById(R.id.backButton);
-        backButton.setOnClickListener(this);
 
         organizingCommiteeButton = (Button) findViewById(R.id.organizingCommitteeButton);
         organizingCommiteeButton.setOnClickListener(this);
@@ -116,9 +105,7 @@ public class AboutUsActivity extends AppCompatActivity  implements AboutUsView, 
                 }
                 break;
 
-            case R.id.backButton:
-                onBackPressed();
-                break;
+
         }
 
     }

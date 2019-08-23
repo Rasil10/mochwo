@@ -177,7 +177,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/mainMargin"
                 android:padding="@dimen/mainMargin"
-                app:chip_background="@color/colorPrimary"
+                app:chip_background="@color/colorChip"
                 app:chip_background_selected="@color/colorPrimaryDark"
                 app:chip_corner_radius="@dimen/mainMargin"
                 app:chip_line_spacing="@dimen/mainMargin"

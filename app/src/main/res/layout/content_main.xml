@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,19 +12,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:background="@drawable/mochwo_logo_mobile"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ccffffff"
+            android:background="#ffffff"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="90dp"
                 android:background="#ffffff"
                 android:orientation="horizontal"
                 android:weightSum="10">
@@ -45,19 +45,20 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/smallMargin"
                 android:fontFamily="@font/nunitobold"
                 android:text="4th International Conference"
                 android:textAlignment="center"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="28sp" />
 
             <TextView
                 android:id="@+id/conferenceDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunitobold"
-                android:text="18 - 19 October 2019 | Kathmandu, Nepal"
                 android:textAlignment="center"
+                android:text="@string/mochwo_date"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSizeHeading" />
 
@@ -65,407 +66,415 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:background="@android:color/transparent"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:layout_marginTop="@dimen/fab_margin"
+                android:background="@drawable/mochwo_logo_mobile"
+                android:orientation="vertical">
 
-                <!--ScheduleModel-->
                 <LinearLayout
-                    android:id="@+id/scheduleCardView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/mainMargin"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:background="#ccffffff"
+                    android:layout_marginTop="28dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-
+                    <!--ScheduleModel-->
                     <LinearLayout
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/style_circular_backgroun"
+                        android:id="@+id/scheduleCardView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/mainMargin"
                         android:gravity="center"
-                        android:padding="@dimen/fab_margin">
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/scheduleIV"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_event_note_black_24dp"
-                            android:tint="@color/colorWhite" />
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/style_circular_backgroun"
+                            android:gravity="center"
+                            android:padding="@dimen/fab_margin">
+
+                            <ImageView
+                                android:id="@+id/scheduleIV"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_event_note_black_24dp"
+                                android:tint="@color/colorWhite" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/scheduleIV"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/smallMargin"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="Schedules"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/textSizeSmall"
+                            android:textStyle="bold" />
+
 
                     </LinearLayout>
 
-                    <TextView
+                    <!--Speakers-->
+                    <LinearLayout
+                        android:id="@+id/speakersCardView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/scheduleIV"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/smallMargin"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="Schedules"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
+                        android:layout_margin="@dimen/mainMargin"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/style_circular_backgroun"
+                            android:gravity="center"
+                            android:padding="@dimen/fab_margin">
+
+                            <ImageView
+                                android:id="@+id/speakerIV"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_speaker"
+                                android:tint="@color/colorWhite" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/scheduleIV"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/smallMargin"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="Speakers"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/textSizeSmall"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <!--Sponsers-->
+                    <LinearLayout
+                        android:id="@+id/sponsersCardView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/mainMargin"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/style_circular_backgroun"
+                            android:gravity="center"
+                            android:padding="@dimen/fab_margin">
+
+                            <ImageView
+                                android:id="@+id/sponsersIV"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_sponsers"
+                                android:tint="@color/colorWhite" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/smallMargin"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="Collaborators"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/textSizeSmall"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <!--Speakers-->
                 <LinearLayout
-                    android:id="@+id/speakersCardView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/mainMargin"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:background="#ccffffff"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-
+                    <!--BOOkmarks-->
                     <LinearLayout
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/style_circular_backgroun"
+                        android:id="@+id/bookmarksCardView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/mainMargin"
                         android:gravity="center"
-                        android:padding="@dimen/fab_margin">
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/speakerIV"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_speaker"
-                            android:tint="@color/colorWhite" />
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/style_circular_backgroun"
+                            android:gravity="center"
+                            android:padding="@dimen/fab_margin">
+
+                            <ImageView
+                                android:id="@+id/bookmarksIV"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_bookmark_true"
+                                android:tint="@color/colorWhite" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/scheduleIV"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/smallMargin"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="Bookmarks"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/textSizeSmall"
+                            android:textStyle="bold" />
+
 
                     </LinearLayout>
 
-                    <TextView
+                    <!--About-->
+                    <LinearLayout
+                        android:id="@+id/aboutCardView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/scheduleIV"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/smallMargin"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="Speakers"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
+                        android:layout_margin="@dimen/mainMargin"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
 
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/style_circular_backgroun"
+                            android:gravity="center"
+                            android:padding="@dimen/fab_margin">
+
+                            <ImageView
+                                android:id="@+id/aboutIV"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_about_us"
+                                android:tint="@color/colorWhite" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/scheduleIV"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/smallMargin"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="About"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/textSizeSmall"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <!--Map-->
+                    <LinearLayout
+                        android:id="@+id/mapCardView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/mainMargin"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/style_circular_backgroun"
+                            android:gravity="center"
+                            android:padding="@dimen/fab_margin">
+
+                            <ImageView
+                                android:id="@+id/mapIV"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_location_on_black_24dp"
+                                android:tint="@color/colorWhite" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/scheduleIV"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/smallMargin"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="Map"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/textSizeSmall"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
                 </LinearLayout>
 
-                <!--Sponsers-->
                 <LinearLayout
-                    android:id="@+id/sponsersCardView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/mainMargin"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:background="#ccffffff"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-
+                    <!--Abstract-->
                     <LinearLayout
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/style_circular_backgroun"
+                        android:id="@+id/abstractCardView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/mainMargin"
                         android:gravity="center"
-                        android:padding="@dimen/fab_margin">
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/sponsersIV"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_sponsers"
-                            android:tint="@color/colorWhite" />
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/style_circular_backgroun"
+                            android:gravity="center"
+                            android:padding="@dimen/fab_margin">
+
+                            <ImageView
+                                android:id="@+id/abstractIV"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_abstract"
+                                android:tint="@color/colorWhite" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/scheduleIV"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/smallMargin"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="Abstract"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/textSizeSmall"
+                            android:textStyle="bold" />
+
 
                     </LinearLayout>
 
-                    <TextView
+                    <!--News-->
+                    <LinearLayout
+                        android:id="@+id/newsCardView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/smallMargin"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="Collaborators"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
+                        android:layout_margin="@dimen/mainMargin"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
 
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/style_circular_backgroun"
+                            android:gravity="center"
+                            android:padding="@dimen/fab_margin">
+
+                            <ImageView
+                                android:id="@+id/newsIV"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_news"
+                                android:tint="@color/colorWhite" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/scheduleIV"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/smallMargin"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="News"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/textSizeSmall"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <!--notification-->
+                    <LinearLayout
+                        android:id="@+id/notificationCardView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/mainMargin"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/style_circular_backgroun"
+                            android:gravity="center"
+                            android:padding="@dimen/fab_margin">
+
+                            <ImageView
+                                android:id="@+id/notificationIV"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_os_notification_fallback_white_24dp"
+                                android:tint="@color/colorWhite" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/smallMargin"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="Updates"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/textSizeSmall"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <!--BOOkmarks-->
-                <LinearLayout
-                    android:id="@+id/bookmarksCardView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/mainMargin"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/style_circular_backgroun"
-                        android:gravity="center"
-                        android:padding="@dimen/fab_margin">
-
-                        <ImageView
-                            android:id="@+id/bookmarksIV"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_bookmark_true"
-                            android:tint="@color/colorWhite" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/scheduleIV"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/smallMargin"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="Bookmarks"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-                <!--About-->
-                <LinearLayout
-                    android:id="@+id/aboutCardView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/mainMargin"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/style_circular_backgroun"
-                        android:gravity="center"
-                        android:padding="@dimen/fab_margin">
-
-                        <ImageView
-                            android:id="@+id/aboutIV"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_about_us"
-                            android:tint="@color/colorWhite" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/scheduleIV"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/smallMargin"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="About"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-                <!--Map-->
-                <LinearLayout
-                    android:id="@+id/mapCardView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/mainMargin"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/style_circular_backgroun"
-                        android:gravity="center"
-                        android:padding="@dimen/fab_margin">
-
-                        <ImageView
-                            android:id="@+id/mapIV"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_location_on_black_24dp"
-                            android:tint="@color/colorWhite" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/scheduleIV"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/smallMargin"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="Map"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <!--Abstract-->
-                <LinearLayout
-                    android:id="@+id/abstractCardView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/mainMargin"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/style_circular_backgroun"
-                        android:gravity="center"
-                        android:padding="@dimen/fab_margin">
-
-                        <ImageView
-                            android:id="@+id/abstractIV"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_abstract"
-                            android:tint="@color/colorWhite" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/scheduleIV"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/smallMargin"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="Abstract"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-                <!--News-->
-                <LinearLayout
-                    android:id="@+id/newsCardView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/mainMargin"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/style_circular_backgroun"
-                        android:gravity="center"
-                        android:padding="@dimen/fab_margin">
-
-                        <ImageView
-                            android:id="@+id/newsIV"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_news"
-                            android:tint="@color/colorWhite" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/scheduleIV"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/smallMargin"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="News"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-                <!--notification-->
-                <LinearLayout
-                    android:id="@+id/notificationCardView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/mainMargin"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/style_circular_backgroun"
-                        android:gravity="center"
-                        android:padding="@dimen/fab_margin">
-
-                        <ImageView
-                            android:id="@+id/notificationIV"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_os_notification_fallback_white_24dp"
-                            android:tint="@color/colorWhite" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/smallMargin"
-                        android:fontFamily="@font/nunitobold"
-                        android:text="Updates"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/textSizeSmall"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-            </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -599,4 +608,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

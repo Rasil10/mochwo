@@ -37,9 +37,10 @@
     <TextView
         android:id="@+id/tv_created_by"
         android:layout_width="wrap_content"
+        android:layout_margin="@dimen/mainMargin"
         android:layout_height="wrap_content"
         android:text="Developed By : Jnana Technology"
-        android:fontFamily="@font/nunitoregular"
+        android:fontFamily="@font/nunitobold"
         android:textSize="@dimen/textSizeSmall"
         android:textColor="@color/colorPrimaryDark"
         android:layout_alignParentBottom="true"

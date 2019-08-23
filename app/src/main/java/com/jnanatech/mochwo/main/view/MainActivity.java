@@ -1,17 +1,11 @@
 package com.jnanatech.mochwo.main.view;
 
 import android.Manifest;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.media.AudioAttributes;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -22,7 +16,6 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +24,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -60,7 +52,6 @@ import com.jnanatech.mochwo.utils.Constants;
 import com.jnanatech.mochwo.utils.PastEventDialog;
 import com.jnanatech.mochwo.utils.sharedPreference.NotificationSizeSharedPrefHelper;
 import com.onesignal.OneSignal;
-import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -203,7 +194,6 @@ public class MainActivity extends AppCompatActivity
     private void setUpEvent() throws ParseException {
 
 
-
         setUpDate();
     }
 
@@ -235,15 +225,29 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.fabLocation:
 
-                Uri gmmIntentUri = Uri.parse("geo:27.6714696,85.2996738");
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
+//                Uri gmmIntentUri = Uri.parse("geo:27.7199921,85.3191704");
+//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+//                mapIntent.setPackage("com.google.android.apps.maps");
+//
+//                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+//                    startActivity(mapIntent);
+//                } else {
+//                    String geoUri = "http://maps.google.com/maps?q=loc:" + 27.7199921 + "," + 85.3191704 + " (" + "Raddison Hotel" + ")";
+//                    mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
+//                    startActivity(mapIntent);
+//                }
+                Intent mapIntent2 = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=27.7199921,85.3191704"));
 
-                if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(mapIntent);
+
+//                Uri gmmIntentUri2 = Uri.parse("geo:27.7199921,85.3191704");
+//                Intent mapIntent2 = new Intent(Intent.ACTION_VIEW, gmmIntentUri2);
+//                mapIntent2.setPackage("com.google.android.apps.maps");
+//
+                if (mapIntent2.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent2);
                 } else {
-                    String geoUri = "http://maps.google.com/maps?q=loc:" + 27.6714696 + "," + 85.2996738 + " (" + "KIAS" + ")";
-                    mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
+                    String geoUri = "http://maps.google.com/maps?q=loc:" + 27.7199921 + "," + 85.3191704 + " (" + "Radisson Hotel" + ")";
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
                     startActivity(mapIntent);
                 }
                 break;
@@ -267,15 +271,19 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
                 break;
             case R.id.mapCardView:
-                Uri gmmIntentUri2 = Uri.parse("geo:27.6714696,85.2996738");
-                Intent mapIntent2 = new Intent(Intent.ACTION_VIEW, gmmIntentUri2);
-                mapIntent2.setPackage("com.google.android.apps.maps");
 
-                if (mapIntent2.resolveActivity(getPackageManager()) != null) {
-                    startActivity(mapIntent2);
+                Intent mapIntent22 = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=27.7199921,85.3191704"));
+
+
+//                Uri gmmIntentUri2 = Uri.parse("geo:27.7199921,85.3191704");
+//                Intent mapIntent2 = new Intent(Intent.ACTION_VIEW, gmmIntentUri2);
+//                mapIntent2.setPackage("com.google.android.apps.maps");
+//
+                if (mapIntent22.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent22);
                 } else {
-                    String geoUri = "http://maps.google.com/maps?q=loc:" + 27.6714696 + "," + 85.2996738 + " (" + "KIAS" + ")";
-                    mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
+                    String geoUri = "http://maps.google.com/maps?q=loc:" + 27.7199921 + "," + 85.3191704 + " (" + "Radisson Hotel" + ")";
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
                     startActivity(mapIntent);
                 }
                 break;
@@ -327,7 +335,7 @@ public class MainActivity extends AppCompatActivity
             invalidateOptionsMenu();
             changeNotificationIcon = false;
 
-        } else if(changeInSize>0){
+        } else if (changeInSize > 0) {
             invalidateOptionsMenu();
             changeNotificationIcon = true;
             try {
@@ -389,9 +397,8 @@ public class MainActivity extends AppCompatActivity
 
 
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-                int notificationId = (int) (System.currentTimeMillis()/4);
+                int notificationId = (int) (System.currentTimeMillis() / 4);
                 notificationManager.notify(notificationId, mBuilder.build());
-
 
 
             } catch (Exception e) {
@@ -473,7 +480,7 @@ public class MainActivity extends AppCompatActivity
 
         String totalDate = firstPart + " - " + endMonth + ", " + secondPart;
 
-        conferenceDate.setText(totalDate);
+//        conferenceDate.setText(totalDate);
     }
 
 

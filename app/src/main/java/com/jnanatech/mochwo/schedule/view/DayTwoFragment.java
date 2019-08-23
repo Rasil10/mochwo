@@ -119,8 +119,13 @@ public class DayTwoFragment extends Fragment implements DayOneView {
 
 
     @Override
-    public void getDayOneEvents(ArrayList<EventModel> dayOneEvents) {
-        this.dayTwoEvents = dayOneEvents;
+    public void getDayOneEvents(ArrayList<EventModel> dayTwoEvents) {
+        this.dayTwoEvents = dayTwoEvents;
+        if(dayTwoEvents.size()==0){
+            Toast.makeText(getActivity(), "No Schedule Found at this time.", Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
 

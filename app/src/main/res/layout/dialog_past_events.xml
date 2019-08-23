@@ -32,19 +32,19 @@
             android:layout_marginRight="4dp"
             android:layout_marginBottom="20dp"
             android:gravity="center_horizontal"
-            android:text="Our Other Events"
+            android:text="Past Mochwo Conferences"
             android:textColor="#ff000000"
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/mochwo16"
+            android:id="@+id/mochwo18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_dialog"
             android:layout_margin="@dimen/mainMargin"
             android:background="@color/colorPrimary"
             android:fontFamily="@font/nunitobold"
-            android:text=" MOCHWO 16 "
+            android:text=" MOCHWO 18 "
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/textSizeHeading" />
 
@@ -52,7 +52,7 @@
             android:id="@+id/mochwo17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/mochwo16"
+            android:layout_below="@+id/mochwo18"
             android:layout_margin="@dimen/mainMargin"
             android:background="@color/colorPrimary"
             android:fontFamily="@font/nunitobold"
@@ -61,14 +61,14 @@
             android:textSize="@dimen/textSizeHeading" />
 
         <Button
-            android:id="@+id/mochwo18"
+            android:id="@+id/mochwo16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/mochwo17"
             android:layout_margin="@dimen/mainMargin"
             android:background="@color/colorPrimary"
             android:fontFamily="@font/nunitobold"
-            android:text="MOCHWO 18"
+            android:text="MOCHWO 16"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/textSizeHeading" />
 

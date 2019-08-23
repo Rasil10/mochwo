@@ -32,7 +32,7 @@ public class AbstractSubmissionDialog {
             @Override
             public void onClick(View v) {
                 Intent abstractIntent = new Intent(context, AbstractActivity.class);
-                abstractIntent.putExtra(Constants.webUrlConstant, "https://conference2019.kias.org.np/abstract-submission/");
+                abstractIntent.putExtra(Constants.webUrlConstant, "https://conference.kias.org.np/abstract-submission/");
                 abstractIntent.putExtra(Constants.toolbarConstant, "Abstract Submission");
                 context.startActivity(abstractIntent);
                 dialog.dismiss();
@@ -42,7 +42,7 @@ public class AbstractSubmissionDialog {
             @Override
             public void onClick(View v) {
                 Intent presentationIntent = new Intent(context, AbstractActivity.class);
-                presentationIntent.putExtra(Constants.webUrlConstant,"https://conference2019.kias.org.np/presentation-guidelines/");
+                presentationIntent.putExtra(Constants.webUrlConstant,"https://conference.kias.org.np/presentation-guidelines/");
                 presentationIntent.putExtra(Constants.toolbarConstant,"Presentation Guidelines");
                 context.startActivity(presentationIntent);
                 dialog.dismiss();
@@ -53,7 +53,7 @@ public class AbstractSubmissionDialog {
             @Override
             public void onClick(View v) {
                 Intent conferenceIntent = new Intent(context, AbstractActivity.class);
-                conferenceIntent.putExtra(Constants.webUrlConstant,"https://conference2019.kias.org.np/conference-themes/");
+                conferenceIntent.putExtra(Constants.webUrlConstant,"https://conference.kias.org.np/conference-themes/");
                 conferenceIntent.putExtra(Constants.toolbarConstant,"Conference Themes");
                 context.startActivity(conferenceIntent);
                 dialog.dismiss();

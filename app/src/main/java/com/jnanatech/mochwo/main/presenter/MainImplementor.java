@@ -151,42 +151,6 @@ public class MainImplementor implements MainPresenter {
                                     }
 
 
-//                                    JSONObject sessionObject = scheduleD1Array.getJSONObject(i);
-//
-//                                    JSONArray sessionArray = sessionObject.getJSONArray("other_content");
-//                                    String sessionName = sessionObject.getString("session");
-//
-//                                    for (int s = 0; s < sessionArray.length(); s++) {
-//                                        EventModel event = new EventModel();
-//
-//                                        JSONObject object = sessionArray.getJSONObject(s);
-//
-//                                        event.setStartTime(object.getString("start-time"));
-//                                        event.setEndTime(object.getString("end-time"));
-//                                        event.setChairPersonName(object.getString("chair-person"));
-//                                        event.setChairPersonDetail(object.getString("chair-detail"));
-//
-//                                        event.setTopic(object.getString("topic"));
-//
-//                                        event.setId("schedule_d1" + sessionName + event.getTopic());
-//
-//                                        event.setDescription(object.getString("description"));
-//                                        event.setKeywords(object.getString("keywords"));
-//                                        event.setSpeakers(object.getString("speaker"));
-//
-//                                        event.setSessionName(sessionName);
-//                                        event.setScheduleName("schedule_d1");
-//
-//                                        if (getBookmarkStatus(event.getId()))
-//                                            event.setBookmarked(true);
-//                                        else
-//                                            event.setBookmarked(false);
-//
-//                                        dayOneEvents.add(event);
-
-//                                    }
-
-
                                 }
 
                                 realmController.clearAllEvents();
@@ -207,12 +171,12 @@ public class MainImplementor implements MainPresenter {
                         @Override
                         public void onErrorResponse(VolleyError error) {
 
-                            realmController.clearAllEvents();
-
-                            if (realmController.getAllEvents().size() < 1) {
-                                NoInternetDialog noInternetDialog = new NoInternetDialog(context);
-                                noInternetDialog.showDialog();
-                            }
+//                            realmController.clearAllEvents();
+//
+//                            if (realmController.getAllEvents().size() < 1) {
+//                                NoInternetDialog noInternetDialog = new NoInternetDialog(context);
+//                                noInternetDialog.showDialog();
+//                            }
 
 
                         }
@@ -319,10 +283,10 @@ public class MainImplementor implements MainPresenter {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            if (realmController.getAllEvents().size() < 1) {
-                                NoInternetDialog noInternetDialog = new NoInternetDialog(context);
-                                noInternetDialog.showDialog();
-                            }
+//                            if (realmController.getAllEvents().size() < 1) {
+//                                NoInternetDialog noInternetDialog = new NoInternetDialog(context);
+//                                noInternetDialog.showDialog();
+//                            }
                         }
                     });
             requestQueue.add(jsonObjectRequest);

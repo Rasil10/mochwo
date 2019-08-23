@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunitoregular"
                     android:text="10:00"
-                    android:textColor="@color/colorNormal"
+                    android:textColor="@color/colorBlack"
                     android:textSize="@dimen/textSizeSmall" />
 
                 <TextView
@@ -45,7 +45,7 @@
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/nunitobold"
                     android:text=" - "
-                    android:textColor="@color/colorNormal"
+                    android:textColor="@color/colorBlack"
                     android:textSize="@dimen/textSizeHeading" />
 
                 <TextView
@@ -55,7 +55,7 @@
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/nunitoregular"
                     android:text="10:00"
-                    android:textColor="@color/colorNormal"
+                    android:textColor="@color/colorBlack"
                     android:textSize="@dimen/textSizeSmall" />
             </LinearLayout>
 
@@ -93,7 +93,7 @@
                         android:fontFamily="@font/nunitobold"
                         android:text="Topic of Event"
                         android:maxLines="1"
-                        android:textColor="@color/colorNormal"
+                        android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textSizeNormal" />
 
                     <TextView
@@ -104,7 +104,7 @@
                         android:text="Spaker name"
                         android:maxLines="1"
                         android:textAllCaps="true"
-                        android:textColor="@color/colorNormal"
+                        android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textSizeExtraSmall" />
                 </LinearLayout>
 

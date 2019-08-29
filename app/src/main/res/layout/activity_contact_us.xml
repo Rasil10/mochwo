@@ -108,7 +108,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunitosemibold"
-                        android:text="01–6924204"
+                        android:text="01-6924204 / 01-5190232"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/textSizeSmall" />
                 </LinearLayout>

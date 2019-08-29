@@ -540,7 +540,7 @@
                             android:layout_height="20dp"
                             android:layout_marginRight="@dimen/mainMargin"
                             android:src="@drawable/ic_location_on_black_24dp"
-                            android:tint="@color/colorPrimaryDark" />
+                            android:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -564,13 +564,13 @@
                             android:layout_height="20dp"
                             android:layout_marginRight="@dimen/mainMargin"
                             android:src="@drawable/ic_phone_black_24dp"
-                            android:tint="@color/colorPrimaryDark" />
+                            android:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nunitoregular"
-                            android:text="01–6924204"
+                            android:text="01-6924204 / 01-5190232"
                             android:textColor="@color/colorBlack"
                             android:textSize="@dimen/textSizeHeading" />
 
@@ -589,7 +589,7 @@
                             android:layout_height="20dp"
                             android:layout_marginRight="@dimen/mainMargin"
                             android:src="@drawable/ic_email_black_24dp"
-                            android:tint="@color/colorPrimaryDark" />
+                            android:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="wrap_content"

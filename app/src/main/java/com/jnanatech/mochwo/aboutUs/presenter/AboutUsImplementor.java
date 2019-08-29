@@ -23,11 +23,11 @@ public class AboutUsImplementor implements AboutUsPresenter {
     @Override
     public void setOrganizingCommiteeMembers() {
 
-        organizingCommiteeMembers.add(new MemberModel("Dr Prakash K. Paudel", "Executive Director , KIAS", "https://conference.kias.org.np/wp-content/uploads/2019/05/Prakash_F.jpg"));
-        organizingCommiteeMembers.add(new MemberModel("Dr. Basant Giri", "Scientist, KIAS", "https://conference.kias.org.np/wp-content/uploads/2019/05/Basant_F.jpg"));
-        organizingCommiteeMembers.add(new MemberModel("Dr. Susma Giri", "Associate Scientist, KIAS", "https://conference.kias.org.np/wp-content/uploads/2019/05/Susma_F.jpg"));
+        organizingCommiteeMembers.add(new MemberModel("Dr Prakash K. Paudel", "Convener , KIAS", "https://conference.kias.org.np/wp-content/uploads/2019/05/Prakash_F.jpg"));
+        organizingCommiteeMembers.add(new MemberModel("Dr. Basant Giri", "Member, KIAS", "https://conference.kias.org.np/wp-content/uploads/2019/05/Basant_F.jpg"));
+        organizingCommiteeMembers.add(new MemberModel("Dr. Susma Giri", "Member, KIAS", "https://conference.kias.org.np/wp-content/uploads/2019/05/Susma_F.jpg"));
         organizingCommiteeMembers.add(new MemberModel("Dr. Madhu Sudan Kayastha", "Member, KIAS", "https://conference.kias.org.np/wp-content/uploads/2019/05/Madhu_F.jpg"));
-        organizingCommiteeMembers.add(new MemberModel("Dr. Hemu Kafle", "Scientist, KIAS", "https://conference.kias.org.np/wp-content/uploads/2019/05/HEMU_FF.jpg"));
+        organizingCommiteeMembers.add(new MemberModel("Dr. Hemu Kafle", "Member, KIAS", "https://conference.kias.org.np/wp-content/uploads/2019/05/HEMU_FF.jpg"));
 
         aboutUsView.setOrganizingCommiteeMembers(organizingCommiteeMembers);
 

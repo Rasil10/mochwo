@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,7 +14,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.jnanatech.mochwo.News.model.NewsModel;
-import com.jnanatech.mochwo.R;
 import com.jnanatech.mochwo.main.model.Conference;
 import com.jnanatech.mochwo.main.view.MainView;
 import com.jnanatech.mochwo.notification.model.NotificationModel;
@@ -81,13 +79,28 @@ public class MainImplementor implements MainPresenter {
         realmController.clearConference();
         conference.setImageUrl("https://www.adlibbing.org/wp-content/uploads/2018/04/confrence-room.jpg");
         conference.setTitle("4th International Conference \n MOUNTAINS IN THE CHANGING WORLD");
-        conference.setStartDate("2019-10-18 02:20:00");
-        conference.setEndDate("2019-10-19 10:00:00");
+        conference.setStartDate("2019-10-18 10:00:00");
+        conference.setEndDate("2019-10-19 19:00:00");
         conference.setLocation("KIAS Building");
         conference.setQuote("This is the quote for the mochwo 2019. conference.");
 
         realmController.addConference(conference);
         mainView.getEvent(conference);
+    }
+
+    public Boolean getBookmarkStatus(String id) {
+        boolean flag = false;
+        for (int i = 0; i < temporaryEvents.size(); i++) {
+            if (temporaryEvents.get(i).getId().equals(id)) {
+                if (temporaryEvents.get(i).isBookmarked()) {
+                    flag = true;
+                    break;
+                } else {
+                    flag = false;
+                }
+            }
+        }
+        return flag;
     }
 
     @Override
@@ -153,13 +166,19 @@ public class MainImplementor implements MainPresenter {
 
                                 }
 
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                            try{
                                 realmController.clearAllEvents();
                                 for (int i = 0; i < dayOneEvents.size(); i++) {
                                     realmController.addEvent(dayOneEvents.get(i));
                                 }
-
-
-                            } catch (JSONException e) {
+                            }catch (Exception e){
                                 e.printStackTrace();
                             }
 
@@ -189,21 +208,6 @@ public class MainImplementor implements MainPresenter {
             }
         }
 
-    }
-
-    public Boolean getBookmarkStatus(String id) {
-        boolean flag = false;
-        for (int i = 0; i < temporaryEvents.size(); i++) {
-            if (temporaryEvents.get(i).getId().equals(id)) {
-                if (temporaryEvents.get(i).isBookmarked()) {
-                    flag = true;
-                    break;
-                } else {
-                    flag = false;
-                }
-            }
-        }
-        return flag;
     }
 
     @Override
@@ -261,22 +265,24 @@ public class MainImplementor implements MainPresenter {
                                         else
                                             event.setBookmarked(false);
 
-                                        dayOneEvents.add(event);
+                                        dayTwoEvents.add(event);
 
                                     }
 
 
                                 }
 
-
-                                for (int i = 0; i < dayTwoEvents.size(); i++) {
-                                    realmController.addEvent(dayTwoEvents.get(i));
-                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 
-
+                            try {
+                                for (int i = 0; i < dayTwoEvents.size(); i++) {
+                                    realmController.addEvent(dayTwoEvents.get(i));
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
 
                     },
@@ -732,7 +738,6 @@ public class MainImplementor implements MainPresenter {
         return speakerModel;
 
     }
-
 
 
 }

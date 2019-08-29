@@ -521,8 +521,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_contact_us) {
             startActivity(new Intent(MainActivity.this, ContactUsActivity.class));
 
-        } else if (id == R.id.nav_share) {
-
         }
 
         drawer.closeDrawer(GravityCompat.START);

@@ -38,5 +38,5 @@ public class Constants {
 
     public static final String webUrlConstant = "webUrlConstant";
     public static final String toolbarConstant = "toolbarConstant";
-    public static final String kiasImageURL = "http://www.kias.org.np/wp-content/uploads/2015/12/KIAS-SIGN-BOARD.jpg";
+    public static final String kiasImageURL = "https://conference.kias.org.np/wp-content/uploads/2019/07/kias_logo.jpg";
 }

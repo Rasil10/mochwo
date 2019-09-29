@@ -448,7 +448,10 @@ public class MainImplementor implements MainPresenter {
 
                                     sponserModel.setId(sponserObject.getInt("id"));
                                     sponserModel.setTitle(sponserObject.getString("title"));
-                                    sponserModel.setUrl(sponserObject.getString("url"));
+//                                    sponserModel.setUrl(sponserObject.getString("url"));
+
+                                    JSONObject imageObject = sponserObject.getJSONObject("sizes");
+                                    sponserModel.setUrl(imageObject.getString("medium_large"));
 
                                     sponserModels.add(sponserModel);
 
@@ -643,6 +646,7 @@ public class MainImplementor implements MainPresenter {
         @Override
         protected Void doInBackground(Void... voids) {
             notifications.clear();
+            requestQueue.getCache().clear();
             if (Network.isNetworkAvailable(context)) {
                 JsonObjectRequest
                         jsonObjectRequest

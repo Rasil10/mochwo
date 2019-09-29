@@ -1,6 +1,7 @@
 package com.jnanatech.mochwo.sponsers.view;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class SponsersAdapter extends RecyclerView.Adapter<SponsersAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         SponserModel currentSponser = sponserModels.get(position);
+        Log.d("url",currentSponser.getUrl());
         Picasso.get().load(currentSponser.getUrl())
                 .placeholder(R.drawable.ic_terrain_black_24dp)
                 .error(R.drawable.ic_terrain_black_24dp)

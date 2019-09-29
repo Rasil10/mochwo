@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -108,9 +109,9 @@ public class MainActivity extends AppCompatActivity
                 //Do something after 20 seconds
                 mainPresenter.getUpdates();
                 mainPresenter.checkNotificationSize();
-                handler.postDelayed(this, 8000);
+                handler.postDelayed(this, 5000);
             }
-        }, 8000);
+        }, 5000);
 
 
     }

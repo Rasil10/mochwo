@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorGrey"
-    android:orientation="vertical"
     android:fillViewport="true"
+    android:orientation="vertical"
     tools:context=".sponsers.view.SponserActivity">
 
     <LinearLayout
@@ -37,10 +37,11 @@
 
                 <ImageView
                     android:id="@+id/hostImageView"
-                    android:layout_width="180dp"
+                    android:layout_width="240dp"
                     android:layout_height="120dp"
                     android:layout_gravity="center_horizontal"
-                    android:paddingRight="@dimen/mainMargin" />
+                    android:layout_margin="@dimen/mainMargin"
+                    android:scaleType="fitXY" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -60,18 +61,28 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:layout_marginLeft="@dimen/mainMargin"
                     android:layout_marginTop="@dimen/smallMargin"
                     android:fontFamily="@font/nunitobold"
                     android:text="Co-Organizers"
-                    android:layout_gravity="start"
                     android:textSize="@dimen/textSizeHeading" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/coOrganizerRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/mainMargin" />
+                    android:layout_gravity="center"
+                    android:paddingLeft="@dimen/mainMargin"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/coOrganizerImageView"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/mainMargin"
+                    android:scaleType="fitXY" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -91,11 +102,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:layout_marginLeft="@dimen/mainMargin"
                     android:layout_marginTop="@dimen/smallMargin"
                     android:fontFamily="@font/nunitobold"
                     android:text="Partners"
-                    android:layout_gravity="start"
                     android:textSize="@dimen/textSizeHeading" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -104,7 +115,54 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/mainMargin"
                     android:paddingTop="@dimen/mainMargin"
-                    android:paddingBottom="@dimen/mainMargin" />
+                    android:paddingBottom="@dimen/mainMargin"
+                    android:visibility="gone" />
+
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/partnersImageView1"
+                            android:layout_width="180dp"
+                            android:layout_height="90dp"
+                            android:background="@color/colorWhite"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="@dimen/mainMargin"
+                            android:scaleType="fitXY" />
+
+                        <ImageView
+                            android:id="@+id/partnersImageView2"
+                            android:layout_width="190dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="@dimen/mainMargin"
+                            android:scaleType="fitXY" />
+
+                        <ImageView
+                            android:id="@+id/partnersImageView3"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="@dimen/mainMargin"
+                            android:scaleType="fitXY" />
+
+                        <ImageView
+                            android:id="@+id/partnersImageView4"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="@dimen/mainMargin"
+                            android:scaleType="fitXY" />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -124,11 +182,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:layout_marginLeft="@dimen/mainMargin"
                     android:layout_marginTop="@dimen/smallMargin"
                     android:fontFamily="@font/nunitobold"
                     android:text="Sponsors"
-                    android:layout_gravity="start"
                     android:textSize="@dimen/textSizeHeading" />
 
                 <androidx.recyclerview.widget.RecyclerView
